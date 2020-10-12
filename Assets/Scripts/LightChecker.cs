@@ -31,11 +31,9 @@ public class LightChecker : MonoBehaviour
             {
                 if (Physics.Linecast(safeLight.transform.position, objectToCheck.transform.position, ignoreLayers))
                 {
-                    Debug.Log("blocked");
                 }
                 else
                 {
-                    Debug.Log("line");
                     return true;
                 }
             }
