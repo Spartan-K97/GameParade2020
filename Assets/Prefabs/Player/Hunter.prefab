@@ -192,9 +192,9 @@ GameObject:
   - component: {fileID: 4358879990527171592}
   - component: {fileID: 4358879990527171594}
   - component: {fileID: 4151207323393255957}
-  - component: {fileID: 5725382787591321774}
+  - component: {fileID: 7821169524329309687}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Hunter
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hudManager: {fileID: 894136571615662727}
   interactionDistance: 5
---- !u!114 &5725382787591321774
+--- !u!114 &7821169524329309687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,10 +279,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4358879990527171593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3b5971160b4c2a408a2181cc3afa87c, type: 3}
+  m_Script: {fileID: 11500000, guid: 32de7a20a76578c47bbc867a6f0d6750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preset: {fileID: 11400000, guid: 29168fa4e781b28409d6587a1e81ea0f, type: 2}
+  preset: {fileID: 11400000, guid: b01e0031e7a470f47926109f1f5917e1, type: 2}
   playerMovement: {fileID: 4358879990527171594}
   playerInteraction: {fileID: 4151207323393255957}
 --- !u!1 &4358879991085716424
