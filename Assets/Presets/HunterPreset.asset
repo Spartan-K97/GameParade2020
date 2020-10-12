@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: HunterPreset
   m_EditorClassIdentifier: 
   playerSpeed: 10
+  alternateSpeed: 2
   interactionDistance: 10

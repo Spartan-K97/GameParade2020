@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: RunnerPreset
   m_EditorClassIdentifier: 
   playerSpeed: 6
+  alternateSpeed: 12
   interactionDistance: 5

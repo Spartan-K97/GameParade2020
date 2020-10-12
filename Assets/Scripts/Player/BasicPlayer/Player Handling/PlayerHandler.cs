@@ -46,9 +46,16 @@ public class PlayerHandler : MonoBehaviour
         playerInteraction.interactionDistance = preset.interactionDistance;
     }
 
+    //unity doesnt like overriden updates
     private void Update()
     {
+        SafeUpdate();
+    }
+
+    protected virtual void SafeUpdate()
+    {
         PerformLightTest();
+
     }
 
 

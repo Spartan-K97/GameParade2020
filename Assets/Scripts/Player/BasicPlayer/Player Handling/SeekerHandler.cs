@@ -6,14 +6,27 @@ public class SeekerHandler : PlayerHandler
 {
     public bool vulnerable = false;
 
-
     protected override void OnInLight()
     {
-        vulnerable = true;
+        vulnerable = false;
     }
 
     protected override void OnOutLight()
     {
-        vulnerable = false;
+        vulnerable = true;
     }
+
+    protected override void SafeUpdate()
+    {
+        base.SafeUpdate();
+        if(Input.GetButton("Sprint"))
+        {
+            playerMovement.speed = preset.alternateSpeed;
+        }
+        else
+        {
+            playerMovement.speed = preset.playerSpeed;
+        }
+    }
+
 }

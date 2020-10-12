@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hudManager: {fileID: 894136571615662727}
+  interactionDistance: 5
 --- !u!114 &5725382787591321774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,8 +282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b5971160b4c2a408a2181cc3afa87c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  buttonUsed: 0
+  preset: {fileID: 11400000, guid: 29168fa4e781b28409d6587a1e81ea0f, type: 2}
+  playerMovement: {fileID: 4358879990527171594}
+  playerInteraction: {fileID: 4151207323393255957}
 --- !u!1 &4358879991085716424
 GameObject:
   m_ObjectHideFlags: 0
