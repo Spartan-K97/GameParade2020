@@ -5,10 +5,10 @@ using UnityEngine;
 //default player handler, neither a seeker or a hunter
 public class PlayerHandler : MonoBehaviour
 {
-    [SerializeField] PlayerPreset preset;
+    [SerializeField] protected PlayerPreset preset;
 
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] PlayerInteraction playerInteraction;
+    [SerializeField] protected PlayerMovement playerMovement;
+    [SerializeField] protected PlayerInteraction playerInteraction;
 
     bool inLight = false;
 

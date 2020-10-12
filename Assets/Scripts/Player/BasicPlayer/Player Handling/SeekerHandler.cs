@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class SeekerHandler : PlayerHandler
 {
+    public bool vulnerable = false;
+
+
     protected override void OnInLight()
     {
-        base.OnInLight();
+        vulnerable = true;
     }
 
     protected override void OnOutLight()
     {
-        base.OnOutLight();
+        vulnerable = false;
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerPreset : ScriptableObject
 {
     public float playerSpeed;
+    public float alternateSpeed;
+
 
     public float interactionDistance;
 }

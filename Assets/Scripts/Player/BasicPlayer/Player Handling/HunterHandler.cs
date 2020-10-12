@@ -6,12 +6,12 @@ public class HunterHandler : PlayerHandler
 {
     protected override void OnInLight()
     {
-        base.OnInLight();
+        playerMovement.speed = preset.alternateSpeed;
     }
 
     protected override void OnOutLight()
     {
-        base.OnOutLight();
+        playerMovement.speed = preset.playerSpeed;
     }
 
 }
