@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] HUDManager hudManager;
 
+    public float interactionDistance = 5.0f;
     //The interactable object the player is looking at
     Interactable interactHold;
 
@@ -28,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
     void FixedUpdate()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 5.0f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
         {
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
