@@ -6,6 +6,7 @@ public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] HUDManager hudManager;
 
+    public bool isRunner = false;
     public float interactionDistance = 5.0f;
     //The interactable object the player is looking at
     Interactable interactHold;

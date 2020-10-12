@@ -21,20 +21,20 @@ public class LightChecker : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] List<SafeLight> lights;
+    [SerializeField] List<InteractableLight> lights;
     [SerializeField] LayerMask ignoreLayers;
     public bool performLightCheck(GameObject objectToCheck)
     {
-        foreach (SafeLight safeLight in lights)
+        foreach (InteractableLight safeLight in lights)
         {
-            if(Vector3.Distance(safeLight.transform.position, objectToCheck.transform.position) < safeLight.lightDistance)
+            if (safeLight.lightIsOn)
             {
-                if (Physics.Linecast(safeLight.transform.position, objectToCheck.transform.position, ignoreLayers))
+                if (Vector3.Distance(safeLight.transform.position, objectToCheck.transform.position) < safeLight.lightDistance)
                 {
-                }
-                else
-                {
-                    return true;
+                    if (!Physics.Linecast(safeLight.transform.position, objectToCheck.transform.position, ignoreLayers))
+                    {
+                        return true;
+                    }
                 }
             }
         }

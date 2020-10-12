@@ -8,6 +8,6 @@ public class PlayerPreset : ScriptableObject
     public float playerSpeed;
     public float alternateSpeed;
 
-
+    public bool isRunner;
     public float interactionDistance;
 }

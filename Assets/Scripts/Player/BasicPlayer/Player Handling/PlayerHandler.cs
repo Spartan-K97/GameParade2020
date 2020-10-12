@@ -44,6 +44,7 @@ public class PlayerHandler : MonoBehaviour
         playerMovement.speed = preset.playerSpeed;
 
         playerInteraction.interactionDistance = preset.interactionDistance;
+        playerInteraction.isRunner = preset.isRunner;
     }
 
     //unity doesnt like overriden updates
