@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 4bccb1ae1b273a44dbefd5c383838efc
+  - enabled: 1
+    path: Assets/Scenes/PlayAsLight.unity
+    guid: 59f9f8d2196585e4d805d5b112fed59f
+  - enabled: 1
+    path: Assets/Scenes/PlayAsDark.unity
+    guid: 407441430bbdf8c4bb1b2154ec63b466
   m_configObjects: {}
