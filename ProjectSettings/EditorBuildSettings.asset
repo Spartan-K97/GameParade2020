@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayAsDark.unity
     guid: 407441430bbdf8c4bb1b2154ec63b466
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Human Intro.unity
+    guid: d153f6e17dd52db478b6119662348232
   m_configObjects: {}
