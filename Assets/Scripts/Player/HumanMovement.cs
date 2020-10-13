@@ -51,7 +51,6 @@ public class HumanMovement : MonoBehaviour
         anim.SetFloat(animFloatDir, dir);
         anim.SetLayerWeight(animLayerForward, totalSpeed);
     }
-
     void Sprint(bool yes)
     {
         anim.SetBool(animBoolRun, yes);
@@ -59,5 +58,9 @@ public class HumanMovement : MonoBehaviour
     void Crouch(bool yes)
     {
         anim.SetBool(animBoolCrouch, yes);
+    }
+    void SetOrbHeld(bool yes)
+    {
+        anim.SetBool(animBoolOrb, yes);
     }
 }
