@@ -19,7 +19,7 @@ public class DefaultAIAgent : MonoBehaviour
         localMap = AIMapInfo.instance.mapSize;
         localOffset = AIMapInfo.instance.mapOffset;
 
-        WanderPosition();
+        Wander();
     }
 
     Vector3 GetRandomMapPosition()
@@ -39,9 +39,7 @@ public class DefaultAIAgent : MonoBehaviour
 
         return navHit.position;
     }
-
-
-    void WanderPosition()
+    void Wander()
     {
         Vector3 newPos = GetRandomMapPosition();
 
