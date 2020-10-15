@@ -16,25 +16,25 @@ public class HUDManager : MonoBehaviour
 	private int numMatches;
 	private bool canSprint;
 
-	public void AddKey()
+	public void AddKey(int count)
 	{
-		++numKeys;
+		numKeys += count;
 		SetTally(key, keyTally, numKeys);
 	}
-	public void RemoveKey()
+	public void RemoveKey(int count)
 	{
-		--numKeys;
+		numKeys = Mathf.Max(0, numKeys - count);
 		SetTally(key, keyTally, numKeys);
 	}
 
-	public void AddMatch()
+	public void AddMatch(int count)
 	{
-		++numMatches;
+		numMatches += count;
 		SetTally(match, matchTally, numMatches);
 	}
-	public void RemoveMatch()
+	public void RemoveMatch(int count)
 	{
-		--numMatches;
+		numMatches = Mathf.Max(0, numMatches - count);
 		SetTally(match, matchTally, numMatches);
 	}
 

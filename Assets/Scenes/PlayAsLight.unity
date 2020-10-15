@@ -816,7 +816,6 @@ GameObject:
   - component: {fileID: 433028029}
   - component: {fileID: 433028028}
   - component: {fileID: 433028027}
-  - component: {fileID: 433028031}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -906,20 +905,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &433028031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433028026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6808e02d3989c1747a063f2eb5636c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hud: {fileID: 870658274}
-  pause: {fileID: 1619126723}
 --- !u!1 &467126443
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,8 +1077,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a42110da606d24793d3e77e688bddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hudManager: {fileID: 870658274}
   isRunner: 1
+  hudManager: {fileID: 870658274}
   interactionDistance: 5
 --- !u!1 &575882883
 GameObject:
@@ -1641,11 +1626,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672985667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f05371c774231f4b88636320b667279, type: 3}
+  m_Script: {fileID: 11500000, guid: aee77bfce802858428c15049cbf37160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAsHuman: 1
+  hud: {fileID: 870658274}
+  pause: {fileID: 1619126723}
   sf: {fileID: 1672985669}
+  chaserObjectives: []
+  maxKeys: 5
+  numKeysInGame: 5
+  maxMatches: 5
+  maxSprintDuration: 2
+  sprintCooldownDuration: 5
 --- !u!114 &1672985669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,10 +1728,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1734428073}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3978efc5c8edae647966528118747676, type: 3}
+  m_Script: {fileID: 11500000, guid: 39b2aecfb1edf304ab2578b874d7822b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: Interaction Text Not Set
+  interactText: Key
+  numKeys: 1
 --- !u!65 &1734428075
 BoxCollider:
   m_ObjectHideFlags: 0
