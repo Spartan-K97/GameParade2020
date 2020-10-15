@@ -5,12 +5,6 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-public class PauseManager : UIScreen
+public class PauseManager : MonoBehaviour
 {
-    PauseManager()
-    {
-        uiShown = UIShown.Pause;
-        cursorMode = CursorLockMode.Confined;
-        stopTimeOnScreen = true;
-    }
 }
