@@ -5,11 +5,9 @@ using UnityEngine;
 public class InputInterface : MonoBehaviour
 {
 
-    public List<UIScreen> uiScreen;
-
-    UIShown currentUI = UIShown.HUD;
-
-    [SerializeField] public HUDManager hudManager;
+    [SerializeField] HUDManager hud;
+    [SerializeField] PauseManager pause;
+    private bool paused = false;
 
     #region singleton
 
@@ -33,65 +31,19 @@ public class InputInterface : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //adjust for deeper pause sceens
         if (Input.GetButtonDown("Pause"))
         {
-            switch (currentUI)
+            if(paused)
             {
-                case UIShown.HUD://we pause the game
-                    SwitchUIShown(UIShown.Pause);
-                    break;
-
-                //resume the game
-                case UIShown.Pause:
-                    SwitchUIShown(UIShown.HUD);
-                    break;
-                default:
-                    break;
-            }
-
-        }
-    }
-
-    void SwitchUIShown(UIShown ui)
-    {
-        currentUI = ui;
-
-        foreach (var screen in uiScreen)
-        {
-            if (screen.uiShown == ui)
-            {
-                HandleTime(screen.stopTimeOnScreen);
-                screen.SwitchScreen(screen.uiShown == ui);
-                Cursor.lockState = screen.cursorMode;
-            }
+                pause.gameObject.SetActive(false);
+                hud.gameObject.SetActive(true);
+			}
             else
             {
-                screen.SwitchScreen(false);
+                hud.gameObject.SetActive(false);
+                pause.gameObject.SetActive(true);
             }
         }
     }
-
-    //
-    public void ExitToHUD()
-    {
-        SwitchUIShown(UIShown.HUD);
-    }
-
-    void HandleTime(bool timeStop)
-    {
-        if (timeStop)
-        {
-            Debug.Log("tstop");
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Debug.Log("tgo");
-
-            Time.timeScale = 1;
-        }
-    }
-
 }

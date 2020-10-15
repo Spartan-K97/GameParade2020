@@ -5,12 +5,14 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
-public class PauseManager : UIScreen
+public class PauseManager : MonoBehaviour
 {
-    PauseManager()
-    {
-        uiShown = UIShown.Pause;
-        cursorMode = CursorLockMode.Confined;
-        stopTimeOnScreen = true;
-    }
+	void OnEnable()
+	{
+		Cursor.lockState = CursorLockMode.Confined;
+	}
+	void OnDisable()
+	{
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 }
