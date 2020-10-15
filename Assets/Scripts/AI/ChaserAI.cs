@@ -40,12 +40,16 @@ public class ChaserAI : DefaultAIAgent
     IEnumerator ObjectiveLoop()
     {
 
+        yield return new WaitForFixedUpdate();
+
+       StartCoroutine(DetectObjectives());
+
 
         while (LevelManager.instance.chaserObjectives.Count > 0)
         {
-            StartCoroutine(Wander());
-            StartCoroutine(DetectObjectives());
 
+            StartCoroutine(Wander());
+            
             yield return new WaitUntil(() => wanderEnded || objectiveFound);
             //if nothing is detected and the AI has reached their destination
 
@@ -57,6 +61,7 @@ public class ChaserAI : DefaultAIAgent
                 }
                 else
                 {
+                    Debug.Log("Objective found via second chance");
                     //give the ai a break and give it a objective location
                     objectiveFound = true;
                     detectedObjective = LevelManager.instance.GetRandomObjective();
@@ -66,16 +71,19 @@ public class ChaserAI : DefaultAIAgent
 
             if(objectiveFound)
             {
+                Debug.Log("Finding Objective", detectedObjective);
                 secondWander = false;
                 StartCoroutine(ObjectiveInteractAttempt(detectedObjective));
                 yield return new WaitUntil(() => objectiveCollected);
+                    objectiveFound = false;
+                if (LevelManager.instance.chaserObjectives.Count > 0)
+                    StartCoroutine(DetectObjectives());
+                Debug.Log("Objective Collected");
             }
 
             objectiveCollected = false;
-            objectiveFound = false;
         }
 
-        Debug.Log("CHASER CAN KILL");
         //NO OBJECTIVES LEFT, KILL PLAYER
         StartCoroutine(KillLoop());
     }
@@ -83,32 +91,38 @@ public class ChaserAI : DefaultAIAgent
     #region DetectObjectives
     IEnumerator DetectObjectives()
     {
+        if(objectiveFound)
+        {
+            Debug.Log("objective detection ended prematurely");
+        }
+        Debug.Log("Searching for objectives");
         while (!objectiveFound)
         {
+            yield return new WaitForFixedUpdate();
             foreach (GameObject objective in LevelManager.instance.chaserObjectives)
             {
-                objectiveFound = (AttemptDetectObjective(objective));
+                AttemptDetectObjective(objective);
             }
-            yield return new WaitForFixedUpdate();
         }
-        Debug.Log("Objective Found");
+        Debug.Log("ObjectiveDetection ended");
     }
-    bool AttemptDetectObjective(GameObject _gameObject)
+    void AttemptDetectObjective(GameObject _gameObject)
     {
-        if(ObjectIsInFOV(_gameObject, degreesOfVision))
+        if (ObjectIsInFOV(_gameObject, degreesOfVision))
         {
+            Debug.Log("Objective Found via detection");
             //go to objective
             detectedObjective = _gameObject;
             GoToClosestMapPosition(detectedObjective.transform.position);
-            return true;
+            objectiveFound = true;
         }
-        return false;
     }
 
     #endregion
 
     IEnumerator ObjectiveInteractAttempt(GameObject _objective)
     {
+        Debug.Log("DuplicateCheck");
         while(!objectiveCollected)
         {
             yield return new WaitForFixedUpdate();
@@ -118,11 +132,11 @@ public class ChaserAI : DefaultAIAgent
 
     bool CheckObjectiveInRange(GameObject _gameObject, float range)
     {
-        if (ObjectIsInDistance(target, range))
+        if (ObjectiveIsCloseEnough(_gameObject, range))
         {
             //interact with objective
             Interactable interact = _gameObject.GetComponent<Interactable>();
-
+            
             if(interact != null)
             {
                 interact.Interact(interactor);
@@ -136,6 +150,18 @@ public class ChaserAI : DefaultAIAgent
         }
         return false;
     }
+
+    bool ObjectiveIsCloseEnough(GameObject _gameObject, float _range)
+    {
+        float distance = Vector3.Distance(_gameObject.transform.position, transform.position);
+        if (distance < _range)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
 
     #endregion ObjectiveLoop
 
@@ -186,7 +212,7 @@ public class ChaserAI : DefaultAIAgent
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.grey;
-        Gizmos.DrawSphere(transform.position, hearingRadius);
+        Gizmos.DrawSphere(transform.position, visualDistance);
     }
 }
 
