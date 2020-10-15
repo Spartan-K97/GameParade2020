@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : Interactor
 {
     [SerializeField] HUDManager hudManager;
 
-    public bool isRunner = false;
     public float interactionDistance = 5.0f;
     //The interactable object the player is looking at
     Interactable interactHold;

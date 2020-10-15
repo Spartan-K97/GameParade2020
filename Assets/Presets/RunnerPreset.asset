@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b3712f9f4d2cc4e83bc4b5c261f50e, type: 3}
   m_Name: RunnerPreset
   m_EditorClassIdentifier: 
-  playerSpeed: 6
-  alternateSpeed: 12
+  playerSpeed: 4
+  alternateSpeed: 8
   isRunner: 1
   interactionDistance: 5

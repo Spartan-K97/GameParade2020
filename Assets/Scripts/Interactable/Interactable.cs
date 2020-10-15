@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour
 {
     public string interactText = "Interaction Text Not Set";
 
-    public virtual void Interact(PlayerInteraction interact)
+    public virtual void Interact(Interactor interact)
     {
         Debug.Log("NO INTERACTION SET", gameObject);
     }
