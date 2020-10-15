@@ -7,12 +7,4 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-	void OnEnable()
-	{
-		Cursor.lockState = CursorLockMode.Confined;
-	}
-	void OnDisable()
-	{
-		Cursor.lockState = CursorLockMode.Locked;
-	}
 }

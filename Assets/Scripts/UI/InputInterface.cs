@@ -34,15 +34,18 @@ public class InputInterface : MonoBehaviour
         //adjust for deeper pause sceens
         if (Input.GetButtonDown("Pause"))
         {
+            paused = !paused;
             if(paused)
-            {
-                pause.gameObject.SetActive(false);
-                hud.gameObject.SetActive(true);
-			}
-            else
             {
                 hud.gameObject.SetActive(false);
                 pause.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                pause.gameObject.SetActive(false);
+                hud.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
