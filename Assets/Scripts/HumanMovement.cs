@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class HumanMovement : IMovement
 {
-    [SerializeField] Transform human;
-    [SerializeField] Animator anim;
-    [SerializeField] Transform controller;
+    Animator anim;
 
     int animLayerForward;
     int animLayerStrafe;
@@ -17,6 +15,7 @@ public class HumanMovement : IMovement
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         animLayerForward = anim.GetLayerIndex("Forward");
         animLayerStrafe = anim.GetLayerIndex("Strafe");
         animBoolRun = Animator.StringToHash("Running");
@@ -24,8 +23,8 @@ public class HumanMovement : IMovement
         animBoolOrb = Animator.StringToHash("HasOrb");
         animFloatDir = Animator.StringToHash("Direction");
         Transform spawnPos = GameObject.Find("Human Spawn Location").transform;
-        controller.position = human.position = spawnPos.position;
-        controller.rotation = human.rotation = spawnPos.rotation;
+        controller.position = transform.position = spawnPos.position;
+        controller.rotation = transform.rotation = spawnPos.rotation;
     }
 
     public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
@@ -37,16 +36,16 @@ public class HumanMovement : IMovement
             float dir = (forwardSpeed >= 0) ? 1 : -1;
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed) * dir, new Vector3(0, 1, 0));
 
-            human.rotation = Quaternion.RotateTowards(human.rotation, controller.rotation * rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 360 * Time.deltaTime);
             anim.SetFloat(animFloatDir, dir);
             anim.SetLayerWeight(animLayerForward, totalSpeed);
         }
         else
         {
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
-            human.rotation = Quaternion.RotateTowards(human.rotation, rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime);
         }
-        controller.position = human.position;
+        controller.position = transform.position;
     }
     public override void Sprint(bool yes)
     {

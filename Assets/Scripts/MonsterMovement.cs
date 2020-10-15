@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MonsterMovement : IMovement
 {
-    [SerializeField] Transform monster;
-    [SerializeField] Transform controller;
 
 	private void Start()
     {
         Transform spawnPos = GameObject.Find("Monster Spawn Location").transform;
-        controller.position = monster.position = spawnPos.position;
-        controller.rotation = monster.rotation = spawnPos.rotation;
+        controller.position = transform.position = spawnPos.position;
+        controller.rotation = transform.rotation = spawnPos.rotation;
     }
 
 	public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
@@ -24,14 +22,14 @@ public class MonsterMovement : IMovement
             float dir = (forwardSpeed >= 0) ? 1 : -1;
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed) * dir, new Vector3(0, 1, 0));
 
-            monster.rotation = Quaternion.RotateTowards(monster.rotation, controller.rotation * rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 360 * Time.deltaTime);
         }
         else
         {
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
-            monster.rotation = Quaternion.RotateTowards(monster.rotation, rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime);
         }
-        monster.position += controller.rotation * new Vector3(strafeSpeed, 0, forwardSpeed);
-        controller.position = monster.position;
+        transform.position += controller.rotation * new Vector3(strafeSpeed, 0, forwardSpeed);
+        controller.position = transform.position;
     }
 }

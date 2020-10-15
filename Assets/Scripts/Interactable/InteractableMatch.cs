@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableMatch : Interactable
+public class InteractableMatch : Interactable, IShuffle
 {
     [SerializeField] int numMatches = 1;
 
@@ -11,6 +11,7 @@ public class InteractableMatch : Interactable
 		if(interact.isRunner)
 		{
 			LevelManager.instance.AddMatches(numMatches);
+			Destroy(gameObject);
 		}
 	}
 }

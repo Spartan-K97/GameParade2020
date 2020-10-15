@@ -27,19 +27,39 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-	#endregion
+    #endregion
 
-	#region UI
-	[SerializeField] HUDManager hud;
+    private void Start()
+    {
+        // Once loading is complete
+        sf.FadeFromDefault(1, null);
+        List<Interactable> toShuffle = new List<Interactable>();
+        foreach(Interactable i in FindObjectsOfType<Interactable>())
+        {
+            if(i is IShuffle)
+            {
+                toShuffle.Add(i);
+			}
+		}
+        for (int x = 0; x < toShuffle.Count; ++x)
+        {
+            Transform a = toShuffle[x].transform;
+            Transform b = toShuffle[Random.Range(0, toShuffle.Count)].transform;
+            Vector3 tempPos = a.position;
+            Quaternion tempRot = a.rotation;
+            a.position = b.position;
+            a.rotation = b.rotation;
+            b.position = tempPos;
+            b.rotation = tempRot;
+        }
+    }
+
+    #region UI
+
+    [SerializeField] HUDManager hud;
     [SerializeField] PauseManager pause;
     [SerializeField] ScreenFade sf;
     private bool paused = false;
-
-	private void Start()
-	{
-        // Once loading is complete
-        sf.FadeFromDefault(1, null);
-    }
 	void Update()
     {
         //adjust for deeper pause sceens

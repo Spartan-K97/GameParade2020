@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableKey : Interactable
+public class InteractableKey : Interactable, IShuffle
 {
     [SerializeField] int numKeys = 1;
 
@@ -11,6 +11,7 @@ public class InteractableKey : Interactable
 		if(interact.isRunner)
 		{
 			LevelManager.instance.AddKeys(numKeys);
+			Destroy(gameObject);
 		}
 	}
 }
