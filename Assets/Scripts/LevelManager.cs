@@ -33,14 +33,25 @@ public class LevelManager : MonoBehaviour
     {
         // Once loading is complete
         sf.FadeFromDefault(1, null);
-        List<Interactable> toShuffle = new List<Interactable>();
+        List<Interactable> surfaceShuffle = new List<Interactable>();
+        List<Interactable> wallShuffle = new List<Interactable>();
         foreach(Interactable i in FindObjectsOfType<Interactable>())
         {
-            if(i is IShuffle)
+            if(i is ISurfaceShuffle)
             {
-                toShuffle.Add(i);
+                surfaceShuffle.Add(i);
+			}
+            if(i is IWallShuffle)
+            {
+                wallShuffle.Add(i);
 			}
 		}
+        Shuffle(surfaceShuffle);
+        Shuffle(wallShuffle);
+    }
+
+    private void Shuffle(List<Interactable> toShuffle)
+    {
         for (int x = 0; x < toShuffle.Count; ++x)
         {
             Transform a = toShuffle[x].transform;

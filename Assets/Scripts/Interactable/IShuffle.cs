@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IShuffle
+public interface IWallShuffle
+{
+}
+
+public interface ISurfaceShuffle
 {
 }

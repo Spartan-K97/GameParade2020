@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableMonsterObjective : Interactable, IShuffle
+public class InteractableMonsterObjective : Interactable, IWallShuffle
 {
     public override void Interact(Interactor interact)
     {

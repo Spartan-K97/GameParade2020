@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableKey : Interactable, IShuffle
+public class InteractableKey : Interactable, ISurfaceShuffle
 {
     [SerializeField] int numKeys = 1;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableOrb : Interactable, IShuffle
+public class InteractableOrb : Interactable, ISurfaceShuffle
 {
     [SerializeField] GameObject exit;
     public override void Interact(Interactor interact)

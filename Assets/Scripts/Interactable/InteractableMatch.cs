@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableMatch : Interactable, IShuffle
+public class InteractableMatch : Interactable, ISurfaceShuffle
 {
     [SerializeField] int numMatches = 1;
 
