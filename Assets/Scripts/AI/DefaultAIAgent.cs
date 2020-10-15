@@ -1,25 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class DefaultAIAgent : MonoBehaviour
 {
-    [SerializeField] NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent;
 
-    [SerializeField] Transform destination;
-    // Start is called before the first frame update
+    //vision
+    [SerializeField] protected float degreesOfVision;
+    [SerializeField] LayerMask ignoreLayers;
 
     Vector3 localMap;
     Vector3 localOffset;
 
-
+    #region Start
     void Start()
+    {
+        SafeStart();
+    }
+
+    protected virtual void SafeStart()
     {
         localMap = AIMapInfo.instance.mapSize;
         localOffset = AIMapInfo.instance.mapOffset;
+    }
+    #endregion
 
-        Wander();
+    #region Update
+    private void Update()
+    {
+        SafeUpdate();
+    }
+
+    protected virtual void SafeUpdate()
+    {
+
+    }
+
+    #endregion
+
+    #region Wander
+
+    protected bool wanderEnded = false;
+    protected IEnumerator Wander()
+    {
+        wanderEnded = false;
+        Vector3 newPos = GetRandomMapPosition();
+        agent.SetDestination(newPos);
+
+        yield return new WaitForFixedUpdate();
+
+        while (Vector3.Distance(transform.position, newPos) > 1f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+
+        
+        Debug.Log("Wander Ended");
+        wanderEnded = true;
     }
 
     Vector3 GetRandomMapPosition()
@@ -39,12 +79,63 @@ public class DefaultAIAgent : MonoBehaviour
 
         return navHit.position;
     }
-    void Wander()
-    {
-        Vector3 newPos = GetRandomMapPosition();
 
-        agent.SetDestination(newPos);
+    #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    protected void GoToClosestMapPosition(Vector3 _position)
+    {
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(_position, out navHit, 10.0f, NavMesh.AllAreas);
+
+        agent.SetDestination(navHit.position);
     }
+
+
+    protected void FollowObjectLastPosition(GameObject _object)
+    {
+        agent.SetDestination(_object.transform.position);
+    }
+
+    protected bool ObjectIsInDistance(GameObject _object, float _distance)
+    {
+        if (Vector3.Distance(transform.position, _object.transform.position) < _distance)
+        {
+            if (!Physics.Linecast(transform.position, _object.transform.position, ignoreLayers))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected bool ObjectIsInFOV(GameObject _object, float _angle)
+    {
+        Vector3 targetDir = _object.transform.position - transform.position;
+        float angle = Vector3.Angle(targetDir, transform.forward);
+        return (angle < _angle) ;
+    }
+
+
+
 
 
 }

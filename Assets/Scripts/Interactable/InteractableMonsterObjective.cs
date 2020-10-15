@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableExit : Interactable
+public class InteractableMonsterObjective : Interactable
 {
     public override void Interact(Interactor interact)
     {
-        if (interact.isRunner)
+        if (!interact.isRunner)
         {
-            Debug.Log("Game WON");
+            LevelManager.instance.RemoveChaserObjective(gameObject);
         }
     }
 }

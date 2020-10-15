@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b3712f9f4d2cc4e83bc4b5c261f50e, type: 3}
   m_Name: HunterPreset
   m_EditorClassIdentifier: 
-  playerSpeed: 10
+  playerSpeed: 6
   alternateSpeed: 2
+  isRunner: 0
   interactionDistance: 10

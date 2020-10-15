@@ -9,7 +9,7 @@ public class InteractableLight : Interactable
     public float lightDistance;
     public bool lightIsOn;
 
-    public override void Interact(PlayerInteraction interact)
+    public override void Interact(Interactor interact)
     {
         if(interact.isRunner)
         {

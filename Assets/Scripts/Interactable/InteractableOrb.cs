@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractableOrb : Interactable
 {
     [SerializeField] GameObject exit;
-    public override void Interact(PlayerInteraction interact)
+    public override void Interact(Interactor interact)
     {
         if (interact.isRunner)
         {

@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a42110da606d24793d3e77e688bddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRunner: 1
   hudManager: {fileID: 894136571615662727}
-  isRunner: 0
   interactionDistance: 5
 --- !u!114 &5645329648169547513
 MonoBehaviour:
