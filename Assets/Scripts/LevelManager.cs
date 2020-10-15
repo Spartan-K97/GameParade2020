@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
 		if(privateInstance == null)
         {
             privateInstance = this;
+            SceneManager.LoadScene("Library", LoadSceneMode.Additive);
 		}
         else
         {

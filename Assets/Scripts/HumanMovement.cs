@@ -15,7 +15,7 @@ public class HumanMovement : IMovement
     int animBoolOrb;
     int animFloatDir;
 
-    private void Start()
+    void Start()
     {
         animLayerForward = anim.GetLayerIndex("Forward");
         animLayerStrafe = anim.GetLayerIndex("Strafe");
@@ -23,6 +23,9 @@ public class HumanMovement : IMovement
         animBoolCrouch = Animator.StringToHash("Crouching");
         animBoolOrb = Animator.StringToHash("HasOrb");
         animFloatDir = Animator.StringToHash("Direction");
+        Transform spawnPos = GameObject.Find("Human Spawn Location").transform;
+        controller.position = human.position = spawnPos.position;
+        controller.rotation = human.rotation = spawnPos.rotation;
     }
 
     public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values

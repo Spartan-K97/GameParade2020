@@ -7,8 +7,14 @@ public class MonsterMovement : IMovement
     [SerializeField] Transform monster;
     [SerializeField] Transform controller;
 
+	private void Start()
+    {
+        Transform spawnPos = GameObject.Find("Monster Spawn Location").transform;
+        controller.position = monster.position = spawnPos.position;
+        controller.rotation = monster.rotation = spawnPos.rotation;
+    }
 
-    public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
+	public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
         forwardSpeed *= Time.deltaTime * 2;
         strafeSpeed *= Time.deltaTime * 2;
