@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] IMovement movement;
+    [SerializeField] IMovement movement = null;
 
     bool isCrouching = false;
 
-    private void Update()
+	private void Start()
+	{
+        movement.controller = transform;
+	}
+
+	private void Update()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");

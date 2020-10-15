@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableMonsterObjective : Interactable
+public class InteractableMonsterObjective : Interactable, IShuffle
 {
     public bool InteractedWith = false;
 
