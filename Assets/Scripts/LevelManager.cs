@@ -83,7 +83,7 @@ public class LevelManager : MonoBehaviour
 	#endregion
 
 	#region human
-	public List<GameObject> chaserObjectives;
+	
     private int playerNumKeys = 0;
     private int playerNumKeysUsed = 0;
     private int playerNumMatches = 0;
@@ -140,6 +140,11 @@ public class LevelManager : MonoBehaviour
 	#endregion
 
 	#region monster
+        public List<GameObject> chaserObjectives;
+        
+        
+
+
 	#endregion
 	public void RemoveChaserObjective(GameObject gameObject)
     {
