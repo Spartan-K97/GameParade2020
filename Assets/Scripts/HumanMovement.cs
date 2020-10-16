@@ -5,6 +5,10 @@ using UnityEngine;
 public class HumanMovement : IMovement
 {
     Animator anim;
+    [SerializeField] Transform firstPersonArm;
+    [SerializeField] float armLiftDuration = 1;
+    private Vector3 armUpPos; // Replace pos with Rotation when mesh added
+    private Vector3 armDownPos;
 
     int animLayerForward;
     int animLayerStrafe;
@@ -15,6 +19,9 @@ public class HumanMovement : IMovement
 
     void Start()
     {
+        armUpPos = firstPersonArm.localPosition;
+        armDownPos = armUpPos - new Vector3(0, 1, 0);
+        firstPersonArm.localPosition = armDownPos;
         anim = GetComponent<Animator>();
         animLayerForward = anim.GetLayerIndex("Forward");
         animLayerStrafe = anim.GetLayerIndex("Strafe");
@@ -58,5 +65,40 @@ public class HumanMovement : IMovement
     public override void SetOrbHeld(bool yes)
     {
         anim.SetBool(animBoolOrb, yes);
+        if (yes)
+        {
+            StartCoroutine(ShowArm());
+        }
+        else
+        {
+            StartCoroutine(HideArm());
+        }
+
+    }
+    IEnumerator ShowArm()
+    {
+        firstPersonArm.gameObject.SetActive(true);
+        float time = 0;
+        while(time < 1)
+        {
+            yield return true;
+            time += Time.deltaTime * armLiftDuration;
+            firstPersonArm.localPosition = Vector3.Lerp(armDownPos, armUpPos, time);
+        }
+        firstPersonArm.localPosition = armUpPos;
+        firstPersonArm.gameObject.SetActive(true);
+    }
+    IEnumerator HideArm()
+    {
+        firstPersonArm.gameObject.SetActive(true);
+        float time = 1;
+        while (time > 0)
+        {
+            yield return true;
+            time -= Time.deltaTime * armLiftDuration;
+            firstPersonArm.localPosition = Vector3.Lerp(armDownPos, armUpPos, time);
+        }
+        firstPersonArm.localPosition = armDownPos;
+        firstPersonArm.gameObject.SetActive(false);
     }
 }
