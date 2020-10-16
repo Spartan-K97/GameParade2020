@@ -12,7 +12,8 @@ public class ChaserAI : DefaultAIAgent
     public float interactionRadius = 2f;
 
 
-    [SerializeField]GameObject target;
+    [SerializeField] GameObject target;
+    [SerializeField] GameObject exit;
 
     [SerializeField] bool inFOV = false;
 
@@ -61,7 +62,6 @@ public class ChaserAI : DefaultAIAgent
                 }
                 else
                 {
-                    Debug.Log("Objective found via second chance");
                     //give the ai a break and give it a objective location
                     objectiveFound = true;
                     detectedObjective = LevelManager.instance.GetRandomObjective();
@@ -69,16 +69,17 @@ public class ChaserAI : DefaultAIAgent
                 }
             }
 
-            if(objectiveFound)
+            if (objectiveFound)
             {
-                Debug.Log("Finding Objective", detectedObjective);
                 secondWander = false;
                 StartCoroutine(ObjectiveInteractAttempt(detectedObjective));
+                
                 yield return new WaitUntil(() => objectiveCollected);
-                    objectiveFound = false;
+                objectiveFound = false;
                 if (LevelManager.instance.chaserObjectives.Count > 0)
+                {
                     StartCoroutine(DetectObjectives());
-                Debug.Log("Objective Collected");
+                }
             }
 
             objectiveCollected = false;
@@ -167,6 +168,7 @@ public class ChaserAI : DefaultAIAgent
 
     #region KillLoop
 
+    bool patrolling = false;
     IEnumerator KillLoop()
     {
         yield return new WaitForFixedUpdate();
@@ -176,20 +178,50 @@ public class ChaserAI : DefaultAIAgent
         //while player isnt dead
         while (true)
         {
-            StartCoroutine(Wander());
+            StartCoroutine(Patrol());
+            Debug.Log("KillloopStart");
+            yield return new WaitUntil(() => wanderEnded || objectiveFound);
+            yield return new WaitForEndOfFrame();
+            wanderEnded = false;
             //if player is seen, chase
 
-            yield return new WaitUntil(() => wanderEnded || objectiveFound);
-            ///////patrol
-            if (wanderEnded)
+            if (objectiveFound)
             {
-                
+                Debug.Log("objectiveFound");
+                objectiveFound = false;
             }
-            //if player is not detected, wander
-            //if wandered, return to the door
-
+            
         }
     }
+
+    //patrol from the door to a random map position
+    IEnumerator Patrol()
+    {
+        Debug.Log("Patrol Started");
+        Vector3 newPos = GetRandomMapPosition();
+        Debug.Log(newPos);
+        agent.SetDestination(newPos);
+        while ((Vector3.Distance(transform.position, newPos) > 1f) || objectiveFound)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        //yield return new WaitUntil(() => (Vector3.Distance(transform.position, newPos) > 1f) || objectiveFound);
+        Debug.Log("Patrol to random Finished");
+        if (!objectiveFound)
+        {
+            //go to door
+            GoToClosestMapPosition(exit.transform.position);
+            //yield return new WaitUntil(() => (Vector3.Distance(transform.position, exit.transform.position) > 2f) || objectiveFound);
+            while ((Vector3.Distance(transform.position, exit.transform.position) > 2f) || objectiveFound)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            wanderEnded = true;
+            Debug.Log("Patrol to door Finished");
+        }
+       
+    }
+
 
     #region DetectRunner
     IEnumerator DetectRunner()
@@ -198,39 +230,22 @@ public class ChaserAI : DefaultAIAgent
         {
             Debug.Log("runner detection ended prematurely");
         }
-        Debug.Log("Searching for objectives");
         while (!objectiveFound)
         {
             yield return new WaitForFixedUpdate();
-            foreach (GameObject objective in LevelManager.instance.chaserObjectives)
-            {
-                AttemptDetectRunner(objective);
-            }
+           
+            AttemptDetectObjective(target);
         }
         Debug.Log("RunnerDetection ended");
     }
-    void AttemptDetectRunner(GameObject _gameObject)
-    {
-        if (ObjectIsInFOV(_gameObject, degreesOfVision))
-        {
-            Debug.Log("Objective Found via detection");
-            //go to objective
-            detectedObjective = _gameObject;
-            GoToClosestMapPosition(detectedObjective.transform.position);
-            objectiveFound = true;
-        }
-    }
-
     #endregion
-
-
 
     //On detection warn the player
     void AttemptDetectRunner()
     {
 
         //can the player be seen
-        if(inFOV = ObjectIsInFOV(target, degreesOfVision))
+        if(ObjectIsInFOV(target, degreesOfVision))
         {
                 //chase the player
         }

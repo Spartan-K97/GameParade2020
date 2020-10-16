@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
 		if(privateInstance == null)
         {
             privateInstance = this;
-            SceneManager.LoadScene("Library", LoadSceneMode.Additive);
+            //SceneManager.LoadScene("Library", LoadSceneMode.Additive);
 		}
         else
         {

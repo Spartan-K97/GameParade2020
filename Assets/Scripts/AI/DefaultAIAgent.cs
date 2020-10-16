@@ -59,7 +59,7 @@ public class DefaultAIAgent : MonoBehaviour
         wanderEnded = true;
     }
 
-    Vector3 GetRandomMapPosition()
+    protected Vector3 GetRandomMapPosition()
     {
         Vector3 positionVector = Vector3.zero;
 
