@@ -170,18 +170,58 @@ public class ChaserAI : DefaultAIAgent
     IEnumerator KillLoop()
     {
         yield return new WaitForFixedUpdate();
-        //if player is seen, chase
 
-        //if player is heard, goto position
+        StartCoroutine(DetectRunner());
 
-        ///////patrol
-        //if player is not detected, wander
-        //if wandered, return to the door
+        //while player isnt dead
+        while (true)
+        {
+            StartCoroutine(Wander());
+            //if player is seen, chase
 
+            yield return new WaitUntil(() => wanderEnded || objectiveFound);
+            ///////patrol
+            if (wanderEnded)
+            {
+                
+            }
+            //if player is not detected, wander
+            //if wandered, return to the door
+
+        }
     }
 
+    #region DetectRunner
+    IEnumerator DetectRunner()
+    {
+        if (objectiveFound)
+        {
+            Debug.Log("runner detection ended prematurely");
+        }
+        Debug.Log("Searching for objectives");
+        while (!objectiveFound)
+        {
+            yield return new WaitForFixedUpdate();
+            foreach (GameObject objective in LevelManager.instance.chaserObjectives)
+            {
+                AttemptDetectRunner(objective);
+            }
+        }
+        Debug.Log("RunnerDetection ended");
+    }
+    void AttemptDetectRunner(GameObject _gameObject)
+    {
+        if (ObjectIsInFOV(_gameObject, degreesOfVision))
+        {
+            Debug.Log("Objective Found via detection");
+            //go to objective
+            detectedObjective = _gameObject;
+            GoToClosestMapPosition(detectedObjective.transform.position);
+            objectiveFound = true;
+        }
+    }
 
-
+    #endregion
 
 
 
