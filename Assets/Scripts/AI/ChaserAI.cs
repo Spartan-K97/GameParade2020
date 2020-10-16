@@ -30,6 +30,7 @@ public class ChaserAI : DefaultAIAgent
 
     protected override void SafeUpdate()
     {
+
     }
 
     #region ObjectiveLoop
@@ -205,8 +206,7 @@ public class ChaserAI : DefaultAIAgent
         {
             yield return new WaitForFixedUpdate();
         }
-        //yield return new WaitUntil(() => (Vector3.Distance(transform.position, newPos) > 1f) || objectiveFound);
-        Debug.Log("Patrol to random Finished");
+
         if (!objectiveFound)
         {
             //go to door
@@ -219,7 +219,6 @@ public class ChaserAI : DefaultAIAgent
             wanderEnded = true;
             Debug.Log("Patrol to door Finished");
         }
-       
     }
 
 
@@ -243,31 +242,13 @@ public class ChaserAI : DefaultAIAgent
     //On detection warn the player
     void AttemptDetectRunner()
     {
-
-        //can the player be seen
-        if(ObjectIsInFOV(target, degreesOfVision))
-        {
-                //chase the player
-        }
-        else
-        //can the player be heard
         if(ObjectIsInDistance(target, hearingRadius))
         {
             //is the player quiet
             //else
             //investigate the noise
-
         }
     }
     #endregion KillLoop
-
-    //if objectivefound and moving towards objective
- 
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.grey;
-        Gizmos.DrawSphere(transform.position, visualDistance);
-    }
 }
 
