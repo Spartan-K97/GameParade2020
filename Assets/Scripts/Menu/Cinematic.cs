@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Cinematic : MonoBehaviour
 {
-    [SerializeField] ScreenFade sf;
+    [SerializeField] ScreenFade sf = null;
     [SerializeField] float fadeInDuration = 1;
     [SerializeField] float fadeOutDuration = 1;
-    [SerializeField] string nextScene;
+    [SerializeField] string nextScene = "";
     bool fadedIn = false;
     void Start()
     {

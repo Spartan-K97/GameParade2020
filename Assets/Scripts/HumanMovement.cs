@@ -5,7 +5,7 @@ using UnityEngine;
 public class HumanMovement : IMovement
 {
     Animator anim;
-    [SerializeField] Transform firstPersonArm;
+    [SerializeField] Transform firstPersonArm = null;
     [SerializeField] float armLiftDuration = 1;
     private Vector3 armUpPos; // Replace pos with Rotation when mesh added
     private Vector3 armDownPos;

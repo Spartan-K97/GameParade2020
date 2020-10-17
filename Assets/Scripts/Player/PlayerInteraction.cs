@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInteraction : Interactor
 {
-    [SerializeField] HUDManager hudManager;
+    [SerializeField] HUDManager hudManager = null;
 
     public float interactionDistance = 5.0f;
     //The interactable object the player is looking at
@@ -58,16 +58,19 @@ public class PlayerInteraction : Interactor
     {
         interactHold = interactable;
         //give the ui the interaction text
-        string iText = interactHold.interactText;
+        string iText = interactHold.GetInteractMessage(this);
         //Debug.Log(iText);
         hudManager.SetInteractionText(iText);
     }
 
     void ForgetInteractable()
     {
-        interactHold = null;
-        //erase text from ui
-        hudManager.SetInteractionText("");
+        if (interactHold != null)
+        {
+            interactHold = null;
+            //erase text from ui
+            hudManager.SetInteractionText("");
+        }
     }
 
 }

@@ -21,8 +21,14 @@ public class LightChecker : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] List<InteractableLight> lights;
-    [SerializeField] LayerMask ignoreLayers;
+    private List<InteractableLight> lights = null;
+    [SerializeField] LayerMask ignoreLayers = 0;
+
+    private void Start()
+    {
+        lights = new List<InteractableLight>(FindObjectsOfType<InteractableLight>());
+    }
+
     public bool performLightCheck(GameObject objectToCheck)
     {
         foreach (InteractableLight safeLight in lights)

@@ -42,14 +42,9 @@ public class LevelManager : MonoBehaviour
         List<Interactable> wallShuffle = new List<Interactable>();
         foreach(Interactable i in FindObjectsOfType<Interactable>())
         {
-            if(i is ISurfaceShuffle)
-            {
-                surfaceShuffle.Add(i);
-			}
-            if(i is IWallShuffle)
-            {
-                wallShuffle.Add(i);
-			}
+            if (i is ISurfaceShuffle) { surfaceShuffle.Add(i); }
+            if (i is IWallShuffle) { wallShuffle.Add(i); }
+            if (i is InteractableKey) { ++numKeysInGame; }
 		}
         Shuffle(surfaceShuffle);
         Shuffle(wallShuffle);
@@ -72,9 +67,9 @@ public class LevelManager : MonoBehaviour
 
     #region UI
 
-    [SerializeField] HUDManager hud;
-    [SerializeField] PauseManager pause;
-    [SerializeField] ScreenFade sf;
+    [SerializeField] HUDManager hud = null;
+    [SerializeField] PauseManager pause = null;
+    [SerializeField] ScreenFade sf = null;
     private bool paused = false;
 	void Update()
     {
@@ -104,8 +99,8 @@ public class LevelManager : MonoBehaviour
     private int playerNumKeysUsed = 0;
     private int playerNumMatches = 0;
     private bool canSprint = false;
+    private int numKeysInGame = 0;
     [SerializeField] int maxKeys = 5;
-    [SerializeField] int numKeysInGame = 5;
     [SerializeField] int maxMatches = 5;
     [SerializeField] float maxSprintDuration = 2.0f;
     [SerializeField] float sprintCooldownDuration = 5.0f;
@@ -126,6 +121,10 @@ public class LevelManager : MonoBehaviour
         if(Random.Range(0, numKeysInGame) < playerNumKeysUsed) { return true; }
         return false;
 	}
+    public bool PlayerHasKey()
+    {
+        return playerNumKeys >= 1;
+	}
     public int AddMatches(int numMatches)
     {
         int matchesLeft = Mathf.Max(0, playerNumMatches + numMatches - maxMatches);
@@ -139,6 +138,10 @@ public class LevelManager : MonoBehaviour
         --playerNumMatches;
         hud.RemoveMatch(1);
         return true;
+    }
+    public bool PlayerHasMatch()
+    {
+        return playerNumMatches >= 1;
     }
     public float Sprint() // Returns time allowed to sprint, -1 = sprint unavailable
     {

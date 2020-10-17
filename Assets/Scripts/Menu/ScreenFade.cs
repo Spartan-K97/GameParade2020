@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
 {
-	[SerializeField] Image background;
+	[SerializeField] Image background = null;
 
 	public void FadeFromDefault(float duration, Action onComplete)
 	{

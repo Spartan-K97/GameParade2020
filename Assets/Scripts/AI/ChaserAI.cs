@@ -12,10 +12,10 @@ public class ChaserAI : DefaultAIAgent
     public float interactionRadius = 2f;
 
 
-    [SerializeField] GameObject target;
-    [SerializeField] GameObject exit;
+    [SerializeField] GameObject target = null;
+    [SerializeField] GameObject exit = null;
 
-    [SerializeField] bool inFOV = false;
+    //[SerializeField] bool inFOV = false;
 
     Interactor interactor;
 
@@ -169,7 +169,7 @@ public class ChaserAI : DefaultAIAgent
 
     #region KillLoop
 
-    bool patrolling = false;
+    //bool patrolling = false;
     IEnumerator KillLoop()
     {
         yield return new WaitForFixedUpdate();
