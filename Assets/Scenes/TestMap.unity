@@ -1846,7 +1846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &475746530
 Transform:
   m_ObjectHideFlags: 0
@@ -4347,7 +4347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1242070210
 Transform:
   m_ObjectHideFlags: 0
@@ -5209,7 +5209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1456573013
 Light:
   m_ObjectHideFlags: 0
@@ -6749,7 +6749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1950556772
 Transform:
   m_ObjectHideFlags: 0
@@ -7447,6 +7447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee77bfce802858428c15049cbf37160, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoad: Library
   hud: {fileID: 0}
   pause: {fileID: 0}
   sf: {fileID: 0}
