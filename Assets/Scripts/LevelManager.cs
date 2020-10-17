@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] string levelToLoad = "";
+
     #region singleton
 
     private static LevelManager privateInstance;
@@ -19,7 +21,10 @@ public class LevelManager : MonoBehaviour
 		if(privateInstance == null)
         {
             privateInstance = this;
-            //SceneManager.LoadScene("Library", LoadSceneMode.Additive);
+            if (levelToLoad != "")
+            {
+                SceneManager.LoadScene(levelToLoad, LoadSceneMode.Additive);
+            }
 		}
         else
         {

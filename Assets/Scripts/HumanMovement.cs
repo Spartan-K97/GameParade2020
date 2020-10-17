@@ -19,9 +19,12 @@ public class HumanMovement : IMovement
 
     void Start()
     {
-        armUpPos = firstPersonArm.localPosition;
-        armDownPos = armUpPos - new Vector3(0, 1, 0);
-        firstPersonArm.localPosition = armDownPos;
+        if (firstPersonArm != null)
+        {
+            armUpPos = firstPersonArm.localPosition;
+            armDownPos = armUpPos - new Vector3(0, 1, 0);
+            firstPersonArm.localPosition = armDownPos;
+        }
         anim = GetComponent<Animator>();
         animLayerForward = anim.GetLayerIndex("Forward");
         animLayerStrafe = anim.GetLayerIndex("Strafe");
@@ -65,15 +68,18 @@ public class HumanMovement : IMovement
     public override void SetOrbHeld(bool yes)
     {
         anim.SetBool(animBoolOrb, yes);
-        if (yes)
-        {
-            StartCoroutine(ShowArm());
-        }
-        else
-        {
-            StartCoroutine(HideArm());
-        }
 
+        if (firstPersonArm != null)
+        {
+            if (yes)
+            {
+                StartCoroutine(ShowArm());
+            }
+            else
+            {
+                StartCoroutine(HideArm());
+            }
+        }
     }
     IEnumerator ShowArm()
     {
