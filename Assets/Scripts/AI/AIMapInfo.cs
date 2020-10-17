@@ -7,12 +7,15 @@ public class AIMapInfo : MonoBehaviour
     #region Singleton
 
     public static AIMapInfo instance;
+    [SerializeField] Transform floor;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            mapSize = floor.localScale / 2;
+            mapOffset = floor.position;
         }
         else
         {

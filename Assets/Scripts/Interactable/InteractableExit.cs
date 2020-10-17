@@ -43,13 +43,14 @@ public class InteractableExit : Interactable
             if (isUnlocked)
             {
                 exitTriggered = true;
+                LevelManager.instance.freeze = true;
                 if(LevelManager.instance.playerHasOrb)
                 {
-                    FindObjectOfType<ScreenFade>().FadeToWhite(2, EndGameHero);
+                    FindObjectOfType<ScreenFade>().FadeToWhite(2, () => SceneManager.LoadScene("Outro Hero"));
 				}
                 else
                 {
-                    FindObjectOfType<ScreenFade>().FadeToWhite(2, EndGameCoward);
+                    FindObjectOfType<ScreenFade>().FadeToWhite(2, () => SceneManager.LoadScene("Outro Coward"));
                 }
             }
             else
@@ -62,12 +63,12 @@ public class InteractableExit : Interactable
         }
     }
 
-    private void EndGameCoward()
-    {
-        SceneManager.LoadScene("Outro Coward");
-	}
-    private void EndGameHero()
-    {
-        SceneManager.LoadScene("Outro Hero");
-    }
+    //private void EndGameCoward()
+    //{
+    //    SceneManager.LoadScene("Outro Coward");
+    //}
+    //private void EndGameHero()
+    //{
+    //    SceneManager.LoadScene("Outro Hero");
+    //}
 }

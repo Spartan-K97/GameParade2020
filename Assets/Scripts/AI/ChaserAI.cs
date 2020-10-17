@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChaserAI : DefaultAIAgent
 {
@@ -13,7 +14,7 @@ public class ChaserAI : DefaultAIAgent
 
 
     [SerializeField] GameObject target = null;
-    [SerializeField] GameObject exit = null;
+    GameObject exit = null;
 
     //[SerializeField] bool inFOV = false;
 
@@ -24,13 +25,10 @@ public class ChaserAI : DefaultAIAgent
     {
         base.SafeStart();
         interactor = gameObject.GetComponent<Interactor>();
+        exit = FindObjectOfType<InteractableExit>().gameObject;
+        //agent = movementController.gameObject.AddComponent<NavMeshAgent>();
 
         StartCoroutine(ObjectiveLoop());
-    }
-
-    protected override void SafeUpdate()
-    {
-
     }
 
     #region ObjectiveLoop
@@ -52,7 +50,7 @@ public class ChaserAI : DefaultAIAgent
 
             StartCoroutine(Wander());
             
-            yield return new WaitUntil(() => wanderEnded || objectiveFound);
+            yield return new WaitUntil(() => (wanderEnded || objectiveFound));
             //if nothing is detected and the AI has reached their destination
 
             if (wanderEnded)

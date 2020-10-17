@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MonsterMovement : IMovement
 {
+    [SerializeField] Transform human;
 
 	private void Start()
     {
@@ -11,6 +13,15 @@ public class MonsterMovement : IMovement
         controller.position = transform.position = spawnPos.position;
         controller.rotation = transform.rotation = spawnPos.rotation;
     }
+
+	private void Update()
+	{
+        if (Vector3.Distance(transform.position, human.position) < 1)
+        {
+            LevelManager.instance.freeze = true;
+            FindObjectOfType<ScreenFade>().FadeToBlack(2, () => SceneManager.LoadScene("Outro Death"));
+        }
+	}
 
 	public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {

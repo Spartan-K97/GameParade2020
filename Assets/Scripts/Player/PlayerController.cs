@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
     {
+        if(LevelManager.instance.freeze) { return; }
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         bool crouchPressed = Input.GetButtonDown("Crouch");

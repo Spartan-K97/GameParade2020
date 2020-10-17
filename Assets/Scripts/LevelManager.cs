@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
     [SerializeField] string levelToLoad = "";
+    public bool freeze = false;
 
     #region singleton
 
@@ -167,12 +169,9 @@ public class LevelManager : MonoBehaviour
 	#endregion
 
 	#region monster
-        public List<GameObject> chaserObjectives;
-        
-        
 
-
-	#endregion
+    public List<GameObject> chaserObjectives;
+    
 	public void RemoveChaserObjective(GameObject gameObject)
     {
         chaserObjectives.Remove(gameObject);
@@ -188,4 +187,5 @@ public class LevelManager : MonoBehaviour
         return chaserObjectives[Random.Range(0, chaserObjectives.Count -1)];
     }
 
+    #endregion
 }

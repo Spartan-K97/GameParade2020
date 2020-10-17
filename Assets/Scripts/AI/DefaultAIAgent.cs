@@ -6,7 +6,8 @@ using UnityEngine.AI;
 
 public class DefaultAIAgent : MonoBehaviour
 {
-    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected NavMeshAgent agent = null;
+    [SerializeField] protected IMovement movementController = null;
 
     //vision
     [SerializeField] protected float degreesOfVision;
@@ -25,20 +26,8 @@ public class DefaultAIAgent : MonoBehaviour
     {
         localMap = AIMapInfo.instance.mapSize;
         localOffset = AIMapInfo.instance.mapOffset;
+        movementController.controller = transform;
     }
-    #endregion
-
-    #region Update
-    private void Update()
-    {
-        SafeUpdate();
-    }
-
-    protected virtual void SafeUpdate()
-    {
-
-    }
-
     #endregion
 
     #region Wander
@@ -48,14 +37,29 @@ public class DefaultAIAgent : MonoBehaviour
     {
         wanderEnded = false;
         Vector3 newPos = GetRandomMapPosition();
-        agent.SetDestination(newPos);
+        //agent.SetDestination(newPos);
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(movementController.transform.position, newPos, 1 << NavMesh.GetAreaFromName("Walkable"), path);
 
-        yield return new WaitForFixedUpdate();
-
-        while (Vector3.Distance(transform.position, newPos) > 1f)
+        for(int x = 0; x < path.corners.Length; ++x)
         {
-            yield return new WaitForFixedUpdate();
+            Debug.Log("Moving to " + path.corners[x].ToString(), this);
+            while (Vector3.Distance(movementController.transform.position, path.corners[x]) > 0.3f)
+            {
+                Vector3 dir = Vector3.Normalize(path.corners[x] - movementController.transform.position);
+                movementController.Move(dir.z, dir.x, false);
+                yield return true;
+            }
         }
+
+        //yield return true;
+        //
+        //while (Vector3.Distance(transform.position, newPos) > 2f)
+        //{
+        //    Debug.Log(agent.desiredVelocity);
+        //    monsterMovement.Move(agent.desiredVelocity.z, agent.desiredVelocity.x, false);
+        //    yield return true;
+        //}
         wanderEnded = true;
     }
 
@@ -63,13 +67,14 @@ public class DefaultAIAgent : MonoBehaviour
     {
         Vector3 positionVector = Vector3.zero;
 
-        positionVector.x = (Random.value * localMap.x * 2) - localMap.x;
-        positionVector.z = (Random.value * localMap.z * 2) - localMap.z;
+        positionVector.x = Random.Range(-localMap.x, localMap.x);
+        positionVector.z = Random.Range(-localMap.z, localMap.z);
 
         positionVector += localOffset;
 
         NavMeshHit navHit;
-        NavMesh.SamplePosition(positionVector, out navHit, 30.0f, NavMesh.AllAreas);
+        Debug.Log(NavMesh.SamplePosition(positionVector, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable")));
+        Debug.Log("Navigation Target: " + positionVector.ToString());
 
         return navHit.position;
     }

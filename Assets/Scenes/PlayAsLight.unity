@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.4
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.13333334
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -1133,6 +1133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 751480239}
   - component: {fileID: 751480238}
+  - component: {fileID: 751480237}
   m_Layer: 0
   m_Name: AI Controller
   m_TagString: Untagged
@@ -1140,7 +1141,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &751480238
+--- !u!114 &751480237
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1148,6 +1149,28 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751480236}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2015080d5e965064cbb00e274c425bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  movementController: {fileID: 1787431172}
+  degreesOfVision: 70
+  ignoreLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  hearingRadius: 10
+  visualDistance: 100
+  interactionRadius: 1.5
+  target: {fileID: 2055649648}
+--- !u!114 &751480238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751480236}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adff1845df11a054fa15ac23aaea0f54, type: 3}
   m_Name: 
@@ -1783,7 +1806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35fe57d9f9152d49aaeea61be19277a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 751480239}
+  controller: {fileID: 0}
+  human: {fileID: 2055649651}
 --- !u!1 &1877240883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09219570926dd884c8e4f53091ae689c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 467126446}
+  controller: {fileID: 0}
   firstPersonArm: {fileID: 1385404217}
   armLiftDuration: 1
+--- !u!4 &2055649651 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d10fd5fa915d4c74fbf5ddac496b48a4, type: 3}
+  m_PrefabInstance: {fileID: 37831502}
+  m_PrefabAsset: {fileID: 0}
