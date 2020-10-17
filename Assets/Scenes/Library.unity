@@ -14996,6 +14996,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3129741247407218105, guid: 752ae542eca43354bbc0e33461d48fa2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6299477135775654564, guid: 752ae542eca43354bbc0e33461d48fa2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -15430,7 +15434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 671ae231629aff44aaf7e50efca97f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lights: []
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 256

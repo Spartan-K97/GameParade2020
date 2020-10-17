@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InteractableOrb : Interactable, ISurfaceShuffle
 {
-    [SerializeField] GameObject exit = null;
-
 	public override string GetInteractMessage(Interactor interact)
     {
         if (interact.isRunner)
@@ -19,8 +17,8 @@ public class InteractableOrb : Interactable, ISurfaceShuffle
     {
         if (interact.isRunner)
         {
-            exit.SetActive(true); // Supposed to be able to exit without orb
-            FindObjectOfType<HumanMovement>().SetOrbHeld(true); // Slow, but only called once in game, so is fine
+            LevelManager.instance.playerHasOrb = true;
+            FindObjectOfType<HumanMovement>().SetOrbHeld(true);
             Destroy(gameObject);
         }
     }

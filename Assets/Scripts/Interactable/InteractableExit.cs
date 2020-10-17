@@ -1,18 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractableExit : Interactable
 {
+    private bool isUnlocked = true;
+    private bool exitTriggered = false;
+
 	public override string GetInteractMessage(Interactor interact)
 	{
+        if(exitTriggered) { return ""; }
         if(interact.isRunner)
         {
-            if(LevelManager.instance.PlayerHasKey())
+            if (isUnlocked)
             {
-                return "Use Key";
-			}
-            return "Needs Key";
+                if(LevelManager.instance.playerHasOrb)
+                {
+                    return "Leave With Orb";
+				}
+                else
+                {
+                    return "Leave Without Orb";
+				}
+            }
+            else
+            {
+                if (LevelManager.instance.PlayerHasKey())
+                {
+                    return "Use Key";
+                }
+                return "Needs Key";
+            }
 		}
         return "";
 	}
@@ -21,7 +40,34 @@ public class InteractableExit : Interactable
     {
         if (interact.isRunner)
         {
-            Debug.Log("Game WON");
+            if (isUnlocked)
+            {
+                exitTriggered = true;
+                if(LevelManager.instance.playerHasOrb)
+                {
+                    FindObjectOfType<ScreenFade>().FadeToWhite(2, EndGameHero);
+				}
+                else
+                {
+                    FindObjectOfType<ScreenFade>().FadeToWhite(2, EndGameCoward);
+                }
+            }
+            else
+            {
+                if(LevelManager.instance.UseKey())
+                {
+                    isUnlocked = true;
+				}
+			}
         }
+    }
+
+    private void EndGameCoward()
+    {
+        SceneManager.LoadScene("Outro Coward");
+	}
+    private void EndGameHero()
+    {
+        SceneManager.LoadScene("Outro Hero");
     }
 }

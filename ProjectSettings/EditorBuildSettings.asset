@@ -13,11 +13,23 @@ EditorBuildSettings:
     guid: 59f9f8d2196585e4d805d5b112fed59f
   - enabled: 1
     path: Assets/Scenes/PlayAsDark.unity
-    guid: 407441430bbdf8c4bb1b2154ec63b466
-  - enabled: 1
-    path: Assets/Scenes/Cinematics/Human Intro.unity
-    guid: d153f6e17dd52db478b6119662348232
+    guid: 69c4682462487ca4c93625458b06417f
   - enabled: 1
     path: Assets/Scenes/Library.unity
     guid: 0eed974458ae8974eb81c43c0fd53bca
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Intro Human.unity
+    guid: d153f6e17dd52db478b6119662348232
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Intro Monster.unity
+    guid: 91438d5d3dcb33f428793d0c37610604
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Outro Coward.unity
+    guid: a98be4fbaa24ae94ab91778e0323ada7
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Outro Death.unity
+    guid: 7d103e56611df7543ba80696a2a9eac3
+  - enabled: 1
+    path: Assets/Scenes/Cinematics/Outro Hero.unity
+    guid: 7a6a07e30a1746a4688883a57b751fff
   m_configObjects: {}

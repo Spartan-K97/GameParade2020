@@ -32,9 +32,10 @@ public class LevelManager : MonoBehaviour
 		}
 	}
 
-    #endregion
+	#endregion
 
-    private void Start()
+	#region Game Start
+	private void Start()
     {
         // Once loading is complete
         sf.FadeFromDefault(1, null);
@@ -65,9 +66,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    #region UI
+	#endregion
 
-    [SerializeField] HUDManager hud = null;
+	#region UI
+
+	[SerializeField] HUDManager hud = null;
     [SerializeField] PauseManager pause = null;
     [SerializeField] ScreenFade sf = null;
     private bool paused = false;
@@ -98,6 +101,7 @@ public class LevelManager : MonoBehaviour
     private int playerNumKeys = 0;
     private int playerNumKeysUsed = 0;
     private int playerNumMatches = 0;
+    public bool playerHasOrb = false;
     private bool canSprint = false;
     private int numKeysInGame = 0;
     [SerializeField] int maxKeys = 5;

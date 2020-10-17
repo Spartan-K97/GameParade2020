@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Cinematic : MonoBehaviour
 {
     [SerializeField] ScreenFade sf = null;
+    [SerializeField] bool fadeToWhite = false;
     [SerializeField] float fadeInDuration = 1;
     [SerializeField] float fadeOutDuration = 1;
     [SerializeField] string nextScene = "";
@@ -23,7 +24,14 @@ public class Cinematic : MonoBehaviour
 	{
 		if(fadedIn && Input.anyKeyDown)
         {
-            sf.FadeToDefault(fadeOutDuration, FadeOutComplete);
+            if(fadeToWhite)
+            {
+                sf.FadeToWhite(fadeOutDuration, FadeOutComplete);
+            }
+            else
+            {
+                sf.FadeToBlack(fadeOutDuration, FadeOutComplete);
+			}
 		}
 	}
     void FadeOutComplete()

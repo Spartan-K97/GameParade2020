@@ -23,6 +23,10 @@ public class Menu : MonoBehaviour
 	{
 		sf.FadeToBlack(1, StartDarkFaded);
 	}
+	public void Quit()
+	{
+		Application.Quit();
+	}
 	void StartLightFaded()
 	{
 		SceneManager.LoadScene(lightScene);
