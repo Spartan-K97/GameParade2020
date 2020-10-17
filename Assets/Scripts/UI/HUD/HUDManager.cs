@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class HUDManager : MonoBehaviour
 {
-	[SerializeField] List<Sprite> tallies;
+	[SerializeField] List<Sprite> tallies = new List<Sprite>();
 
 	private void SetTally(Image icon, Image tally, int count)
 	{
@@ -33,9 +33,9 @@ public class HUDManager : MonoBehaviour
 
 	#region human
 
-	[SerializeField] Image key, keyTally, match, matchTally, sprint;
-	[SerializeField] Color activeColour, greyedColour;
-	[SerializeField] Text interactionText;
+	[SerializeField] Image key = null, keyTally = null, match = null, matchTally = null, sprint = null;
+	[SerializeField] Color activeColour = new Color(1, 1, 1, 1), greyedColour = new Color(1, 1, 1, 0.5f);
+	[SerializeField] Text interactionText = null;
 	private int numKeys;
 	private int numMatches;
 

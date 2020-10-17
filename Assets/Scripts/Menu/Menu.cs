@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-	[SerializeField] ScreenFade sf;
-	[SerializeField] string lightScene;
-	[SerializeField] string darkScene;
+	[SerializeField] ScreenFade sf = null;
+	[SerializeField] string lightScene = "";
+	[SerializeField] string darkScene = "";
 
 	void Start()
 	{

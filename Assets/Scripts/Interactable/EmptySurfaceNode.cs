@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWallShuffle
-{
-}
-
-public interface ISurfaceShuffle
+public class EmptySurfaceNode : Interactable, ISurfaceShuffle
 {
 }

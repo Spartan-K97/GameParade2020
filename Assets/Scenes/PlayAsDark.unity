@@ -1027,7 +1027,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 2871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1481,7 +1481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1217961800
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1584,7 +1584,6 @@ MonoBehaviour:
   pause: {fileID: 1619126723}
   sf: {fileID: 1672985669}
   maxKeys: 5
-  numKeysInGame: 5
   maxMatches: 5
   maxSprintDuration: 2
   sprintCooldownDuration: 5

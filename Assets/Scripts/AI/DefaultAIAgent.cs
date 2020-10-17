@@ -10,7 +10,7 @@ public class DefaultAIAgent : MonoBehaviour
 
     //vision
     [SerializeField] protected float degreesOfVision;
-    [SerializeField] LayerMask ignoreLayers;
+    [SerializeField] LayerMask ignoreLayers = 0;
 
     Vector3 localMap;
     Vector3 localOffset;

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GameplayMusicHandler : MonoBehaviour
 {
-    [SerializeField] List<GamePlayMusicLayer> musicLayers;
+    [SerializeField] List<GamePlayMusicLayer> musicLayers = new List<GamePlayMusicLayer>();
 
 
-    [SerializeField] GameObject runner;
-    [SerializeField] GameObject chaser;
+    [SerializeField] GameObject runner = null;
+    [SerializeField] GameObject chaser = null;
 
 
     private void Update()

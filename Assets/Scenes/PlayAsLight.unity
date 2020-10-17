@@ -1390,7 +1390,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1217961800
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1588,7 +1588,6 @@ MonoBehaviour:
   pause: {fileID: 1619126723}
   sf: {fileID: 1672985669}
   maxKeys: 5
-  numKeysInGame: 5
   maxMatches: 5
   maxSprintDuration: 2
   sprintCooldownDuration: 5

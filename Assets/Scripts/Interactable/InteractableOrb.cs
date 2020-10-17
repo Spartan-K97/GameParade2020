@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableOrb : Interactable, IShuffle
+public class InteractableOrb : Interactable, ISurfaceShuffle
 {
-    [SerializeField] GameObject exit;
-    public override void Interact(Interactor interact)
+    [SerializeField] GameObject exit = null;
+
+	public override string GetInteractMessage(Interactor interact)
+    {
+        if (interact.isRunner)
+        {
+            return "Pick Up Orb";
+        }
+        return "";
+    }
+
+	public override void Interact(Interactor interact)
     {
         if (interact.isRunner)
         {
