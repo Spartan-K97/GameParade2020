@@ -6,15 +6,18 @@ using UnityEngine.AI;
 
 public class DefaultAIAgent : MonoBehaviour
 {
-    [SerializeField] protected NavMeshAgent agent = null;
     [SerializeField] protected IMovement movementController = null;
 
     //vision
     [SerializeField] protected float degreesOfVision;
     [SerializeField] LayerMask ignoreLayers = 0;
+    //[SerializeField] protected float interactionRadius = 2f;
+    [SerializeField] protected Interactor interactor;
 
     Vector3 localMap;
     Vector3 localOffset;
+    protected bool objectiveFound = false;
+    protected GameObject detectedObjective = null;
 
     #region Start
     void Start()
@@ -32,35 +35,58 @@ public class DefaultAIAgent : MonoBehaviour
 
     #region Wander
 
-    protected bool wanderEnded = false;
-    protected IEnumerator Wander()
-    {
-        wanderEnded = false;
-        Vector3 newPos = GetRandomMapPosition();
-        //agent.SetDestination(newPos);
-        NavMeshPath path = new NavMeshPath();
-        NavMesh.CalculatePath(movementController.transform.position, newPos, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+    //protected bool wanderEnded = false;
+    //protected IEnumerator Wander()
+    //{
+    //    wanderEnded = false;
+    //    Vector3 newPos = GetRandomMapPosition();
+    //
+    //    yield return StartCoroutine(PathfindPos(newPos));
+    //
+    //    wanderEnded = true;
+    //}
 
-        for(int x = 0; x < path.corners.Length; ++x)
+    Coroutine movement = null;
+    Coroutine interact = null;
+    protected void GoToPosition(Vector3 pos)
+    {
+        StopMoving();
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(pos, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable"));
+        movement = StartCoroutine(PathfindPos(pos));
+    }
+    protected void StopMoving()
+    {
+        if (movement != null) {
+            StopCoroutine(movement);
+            movement = null;
+        }
+    }
+    protected bool ReachedDestination()
+    {
+        return movement == null;
+	}
+
+    bool escapeStuck = false;
+    protected IEnumerator PathfindPos(Vector3 targetPos)
+    {
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(targetPos, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable"));
+
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(movementController.transform.position, navHit.position, 1 << NavMesh.GetAreaFromName("Walkable"), path);
+
+        for (int x = 0; x < path.corners.Length; ++x)
         {
-            Debug.Log("Moving to " + path.corners[x].ToString(), this);
-            while (Vector3.Distance(movementController.transform.position, path.corners[x]) > 0.3f)
+            while (Vector3.Distance(movementController.transform.position, path.corners[x] - new Vector3(0, path.corners[x].y, 0)) > 0.3f)
             {
-                Vector3 dir = Vector3.Normalize(path.corners[x] - movementController.transform.position);
+                Vector3 dir = path.corners[x] - movementController.transform.position; dir.y = 0;
+                dir = Vector3.Normalize(dir);
                 movementController.Move(dir.z, dir.x, false);
-                yield return true;
+                yield return null;
             }
         }
-
-        //yield return true;
-        //
-        //while (Vector3.Distance(transform.position, newPos) > 2f)
-        //{
-        //    Debug.Log(agent.desiredVelocity);
-        //    monsterMovement.Move(agent.desiredVelocity.z, agent.desiredVelocity.x, false);
-        //    yield return true;
-        //}
-        wanderEnded = true;
+        movement = null;
     }
 
     protected Vector3 GetRandomMapPosition()
@@ -73,8 +99,7 @@ public class DefaultAIAgent : MonoBehaviour
         positionVector += localOffset;
 
         NavMeshHit navHit;
-        Debug.Log(NavMesh.SamplePosition(positionVector, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable")));
-        Debug.Log("Navigation Target: " + positionVector.ToString());
+        NavMesh.SamplePosition(positionVector, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable"));
 
         return navHit.position;
     }
@@ -82,20 +107,20 @@ public class DefaultAIAgent : MonoBehaviour
     #endregion
 
 
-    protected void GoToClosestMapPosition(Vector3 _position)
-    {
-        NavMeshHit navHit;
+    //protected void GoToClosestMapPosition(Vector3 _position)
+    //{
+    //    NavMeshHit navHit;
+    //
+    //    NavMesh.SamplePosition(_position, out navHit, 10.0f, NavMesh.AllAreas);
+    //
+    //    StartCoroutine(PathfindPos(navHit.position));
+    //}
 
-        NavMesh.SamplePosition(_position, out navHit, 10.0f, NavMesh.AllAreas);
 
-        agent.SetDestination(navHit.position);
-    }
-
-
-    protected void FollowObjectLastPosition(GameObject _object)
-    {
-        agent.SetDestination(_object.transform.position);
-    }
+    //protected void FollowObjectLastPosition(GameObject _object)
+    //{
+    //    StartCoroutine(PathfindPos(_object.transform.position));
+    //}
 
     protected bool ObjectIsInDistance(GameObject _object, float _distance)
     {
@@ -126,6 +151,37 @@ public class DefaultAIAgent : MonoBehaviour
     }
 
 
+    #region DetectObjectives
+    protected IEnumerator DetectObjectives()
+    {
+        if (objectiveFound)
+        {
+            Debug.Log("objective detection ended prematurely");
+        }
+        Debug.Log("Searching for objectives");
+        while (!objectiveFound)
+        {
+            yield return new WaitForFixedUpdate();
+            foreach (GameObject objective in LevelManager.instance.chaserObjectives)
+            {
+                AttemptDetectObjective(objective);
+            }
+        }
+        Debug.Log("ObjectiveDetection ended");
+    }
+    public void AttemptDetectObjective(GameObject _gameObject)
+    {
+        if (ObjectIsInFOV(_gameObject, degreesOfVision))
+        {
+            Debug.Log("Objective Found via detection");
+            //go to objective
+            detectedObjective = _gameObject;
+            //GoToClosestMapPosition(detectedObjective.transform.position);
+            objectiveFound = true;
+        }
+    }
+
+    #endregion
 
 
 
