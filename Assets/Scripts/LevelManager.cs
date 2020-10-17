@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] string levelToLoad = "";
+
     #region singleton
 
     private static LevelManager privateInstance;
@@ -19,7 +21,10 @@ public class LevelManager : MonoBehaviour
 		if(privateInstance == null)
         {
             privateInstance = this;
-            SceneManager.LoadScene("Library", LoadSceneMode.Additive);
+            if (levelToLoad != "")
+            {
+                SceneManager.LoadScene(levelToLoad, LoadSceneMode.Additive);
+            }
 		}
         else
         {
@@ -94,7 +99,7 @@ public class LevelManager : MonoBehaviour
 	#endregion
 
 	#region human
-	public List<GameObject> chaserObjectives;
+	
     private int playerNumKeys = 0;
     private int playerNumKeysUsed = 0;
     private int playerNumMatches = 0;
@@ -151,6 +156,11 @@ public class LevelManager : MonoBehaviour
 	#endregion
 
 	#region monster
+        public List<GameObject> chaserObjectives;
+        
+        
+
+
 	#endregion
 	public void RemoveChaserObjective(GameObject gameObject)
     {

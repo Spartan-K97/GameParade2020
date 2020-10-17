@@ -56,13 +56,10 @@ public class DefaultAIAgent : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
         }
-
-        
-        Debug.Log("Wander Ended");
         wanderEnded = true;
     }
 
-    Vector3 GetRandomMapPosition()
+    protected Vector3 GetRandomMapPosition()
     {
         Vector3 positionVector = Vector3.zero;
 
@@ -71,33 +68,13 @@ public class DefaultAIAgent : MonoBehaviour
 
         positionVector += localOffset;
 
-        Debug.Log(positionVector);
-
         NavMeshHit navHit;
-
         NavMesh.SamplePosition(positionVector, out navHit, 30.0f, NavMesh.AllAreas);
 
         return navHit.position;
     }
 
     #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     protected void GoToClosestMapPosition(Vector3 _position)
@@ -117,8 +94,10 @@ public class DefaultAIAgent : MonoBehaviour
 
     protected bool ObjectIsInDistance(GameObject _object, float _distance)
     {
-        if (Vector3.Distance(transform.position, _object.transform.position) < _distance)
+        float distance = Vector3.Distance(transform.position, _object.transform.position);
+        if (distance < _distance)
         {
+            Debug.Log(distance);
             if (!Physics.Linecast(transform.position, _object.transform.position, ignoreLayers))
             {
                 return true;
@@ -131,7 +110,14 @@ public class DefaultAIAgent : MonoBehaviour
     {
         Vector3 targetDir = _object.transform.position - transform.position;
         float angle = Vector3.Angle(targetDir, transform.forward);
-        return (angle < _angle) ;
+        if (angle < _angle)
+        {
+            if (!Physics.Linecast(_object.transform.position, transform.position, ignoreLayers))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
