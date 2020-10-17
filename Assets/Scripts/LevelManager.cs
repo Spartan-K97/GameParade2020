@@ -46,9 +46,13 @@ public class LevelManager : MonoBehaviour
             if (i is ISurfaceShuffle) { surfaceShuffle.Add(i); }
             if (i is IWallShuffle) { wallShuffle.Add(i); }
             if (i is InteractableKey) { ++numKeysInGame; }
+            if (i is InteractableMonsterObjective) { chaserObjectives.Add(i.gameObject); }
 		}
         Shuffle(surfaceShuffle);
         Shuffle(wallShuffle);
+        hud.SetNumKeys(playerNumKeys);
+        hud.SetNumMatches(playerNumMatches);
+        hud.SetNumWards(chaserObjectives.Count);
     }
 
     private void Shuffle(List<Interactable> toShuffle)
@@ -98,9 +102,9 @@ public class LevelManager : MonoBehaviour
 
 	#region human
 	
-    private int playerNumKeys = 0;
+    [SerializeField] int playerNumKeys = 0; // Default num can be set
     private int playerNumKeysUsed = 0;
-    private int playerNumMatches = 0;
+    [SerializeField] int playerNumMatches = 0;
     public bool playerHasOrb = false;
     private bool canSprint = false;
     private int numKeysInGame = 0;
@@ -113,14 +117,14 @@ public class LevelManager : MonoBehaviour
     {
         int keysLeft = Mathf.Max(0, playerNumKeys + numKeys - maxKeys);
         playerNumKeys = Mathf.Min(maxKeys, playerNumKeys + numKeys);
-        hud.AddKey(numKeys - keysLeft);
+        hud.SetNumKeys(playerNumKeys);
         return keysLeft;
 	}
     public bool UseKey() // Return true if the correct key is used
     {
         if(playerNumKeys <= 0) { return false; }
         --playerNumKeys;
-        hud.RemoveKey(1);
+        hud.SetNumKeys(playerNumKeys);
         ++playerNumKeysUsed;
         if(Random.Range(0, numKeysInGame) < playerNumKeysUsed) { return true; }
         return false;
@@ -133,14 +137,14 @@ public class LevelManager : MonoBehaviour
     {
         int matchesLeft = Mathf.Max(0, playerNumMatches + numMatches - maxMatches);
         playerNumMatches = Mathf.Min(maxMatches, playerNumMatches + numMatches);
-        hud.AddKey(numMatches - matchesLeft);
+        hud.SetNumMatches(playerNumMatches);
         return matchesLeft;
     }
     public bool UseMatch() // Return false if no matches to use
     {
         if (playerNumMatches <= 0) { return false; }
         --playerNumMatches;
-        hud.RemoveMatch(1);
+        hud.SetNumMatches(playerNumMatches);
         return true;
     }
     public bool PlayerHasMatch()
@@ -172,6 +176,7 @@ public class LevelManager : MonoBehaviour
 	public void RemoveChaserObjective(GameObject gameObject)
     {
         chaserObjectives.Remove(gameObject);
+        hud.SetNumWards(chaserObjectives.Count);
         if(chaserObjectives.Count == 0)
         {
             Debug.Log("Player can now be killed");

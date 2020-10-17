@@ -9,19 +9,21 @@ using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
 	[SerializeField] List<Sprite> tallies = new List<Sprite>();
+	[SerializeField] Color activeColour = new Color(1, 1, 1, 1), greyedColour = new Color(1, 1, 1, 0.5f);
+	[SerializeField] Text interactionText = null;
 
 	private void SetTally(Image icon, Image tally, int count)
 	{
-		if (count >= tallies.Count)
+		if (icon != null)
 		{
-			Debug.LogError("Too many items to tally.");
-		}
-		else
-		{
-			if (tally != null)
+			if (count >= tallies.Count)
+			{
+				Debug.LogError("Too many items to tally.");
+			}
+			else
 			{
 				tally.sprite = tallies[count];
-				tally.color = (count > 0) ? activeColour : greyedColour;
+				icon.color = (count > 0) ? activeColour : greyedColour;
 			}
 		}
 	}
@@ -34,33 +36,16 @@ public class HUDManager : MonoBehaviour
 	#region human
 
 	[SerializeField] Image key = null, keyTally = null, match = null, matchTally = null, sprint = null;
-	[SerializeField] Color activeColour = new Color(1, 1, 1, 1), greyedColour = new Color(1, 1, 1, 0.5f);
-	[SerializeField] Text interactionText = null;
-	private int numKeys;
-	private int numMatches;
 
-	public void AddKey(int count)
+	public void SetNumKeys(int count)
 	{
-		numKeys += count;
-		SetTally(key, keyTally, numKeys);
-	}
-	public void RemoveKey(int count)
-	{
-		numKeys = Mathf.Max(0, numKeys - count);
-		SetTally(key, keyTally, numKeys);
+		SetTally(key, keyTally, count);
 	}
 
-	public void AddMatch(int count)
+	public void SetNumMatches(int count)
 	{
-		numMatches += count;
-		SetTally(match, matchTally, numMatches);
+		SetTally(match, matchTally, count);
 	}
-	public void RemoveMatch(int count)
-	{
-		numMatches = Mathf.Max(0, numMatches - count);
-		SetTally(match, matchTally, numMatches);
-	}
-
 	public void SetCanSprint(bool yes)
 	{
 		if (sprint != null)
@@ -73,5 +58,13 @@ public class HUDManager : MonoBehaviour
 	#endregion
 
 	#region monster
+
+	[SerializeField] Image ward = null, wardTally = null;
+
+	public void SetNumWards(int count)
+	{
+		SetTally(ward, wardTally, count);
+	}
+
 	#endregion
 }
