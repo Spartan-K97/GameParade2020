@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+
         bool crouchPressed = Input.GetButtonDown("Crouch");
         bool running = Input.GetButton("Sprint");
 
@@ -28,4 +30,5 @@ public class PlayerController : MonoBehaviour
         movement.Sprint(running);
         movement.Move(z, x, true);
     }
+
 }
