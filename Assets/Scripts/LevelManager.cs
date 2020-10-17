@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -48,13 +49,13 @@ public class LevelManager : MonoBehaviour
             if (i is ISurfaceShuffle) { surfaceShuffle.Add(i); }
             if (i is IWallShuffle) { wallShuffle.Add(i); }
             if (i is InteractableKey) { ++numKeysInGame; }
-            if (i is InteractableMonsterObjective) { chaserObjectives.Add(i.gameObject); }
+            if (i is InteractableMonsterObjective) { ++numWardsInGame; }
 		}
         Shuffle(surfaceShuffle);
         Shuffle(wallShuffle);
         hud.SetNumKeys(playerNumKeys);
         hud.SetNumMatches(playerNumMatches);
-        hud.SetNumWards(chaserObjectives.Count);
+        hud.SetNumWards(numWardsInGame);
     }
 
     private void Shuffle(List<Interactable> toShuffle)
@@ -164,26 +165,39 @@ public class LevelManager : MonoBehaviour
         canSprint = true;
 	}
 
-	#endregion
+    #endregion
 
-	#region monster
+    #region monster
 
-    public List<GameObject> chaserObjectives;
-    
-	public void RemoveChaserObjective(GameObject gameObject)
+    [SerializeField] int playerNumWards = 0; // Default num can be set
+    private int numWardsInGame = 0;
+
+    public void WardBroken()
     {
-        chaserObjectives.Remove(gameObject);
-        hud.SetNumWards(chaserObjectives.Count);
-        if(chaserObjectives.Count == 0)
-        {
-            Debug.Log("Player can now be killed");
-        }
-    }
-
-    public GameObject GetRandomObjective()
+        --numWardsInGame;
+        hud.SetNumWards(numWardsInGame);
+	}
+    public bool AllWardsDestroyed()
     {
-        return chaserObjectives[Random.Range(0, chaserObjectives.Count -1)];
-    }
+        return numWardsInGame <= 0;
+	}
+
+    //public List<GameObject> chaserObjectives;
+    //
+    //public void RemoveChaserObjective(GameObject gameObject)
+    //{
+    //    chaserObjectives.Remove(gameObject);
+    //    hud.SetNumWards(chaserObjectives.Count);
+    //    if(chaserObjectives.Count == 0)
+    //    {
+    //        Debug.Log("Player can now be killed");
+    //    }
+    //}
+    //
+    //public GameObject GetRandomObjective()
+    //{
+    //    return chaserObjectives[Random.Range(0, chaserObjectives.Count)]; // max = EXCLUSIVE
+    //}
 
     #endregion
 }

@@ -193,7 +193,22 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Put initial backstory here...
+  m_Text: 'The war between light and dark lasted for eons.
+
+    Until recently, when
+    the dark wizards decided to seal away the source of the light wizards power,
+    daylight, in a powerful artifact.
+
+    The artifact was locked away with an evil
+    monster, and without their magic, the light wizards were powerless to retreive
+    it.
+
+    It seemed all hope was lost, but one brave man stood out and promised
+    to retreive the artifact...
+
+
+    Trever took his first step into the monsters
+    layer, as the door locked behind him...'
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -384,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sf: {fileID: 1251805747}
+  fadeToWhite: 0
   fadeInDuration: 1
   fadeOutDuration: 1
   nextScene: Scenes/PlayAsLight

@@ -61,6 +61,7 @@ public class DefaultAIAgent : MonoBehaviour
             StopCoroutine(movement);
             movement = null;
         }
+        movementController.Move(0, 0, false);
     }
     protected bool ReachedDestination()
     {
@@ -87,6 +88,7 @@ public class DefaultAIAgent : MonoBehaviour
             }
         }
         movement = null;
+        movementController.Move(0, 0, false);
     }
 
     protected Vector3 GetRandomMapPosition()
@@ -152,7 +154,7 @@ public class DefaultAIAgent : MonoBehaviour
 
 
     #region DetectObjectives
-    protected IEnumerator DetectObjectives()
+    protected IEnumerator DetectObjectives(List<Interactable> objectives)
     {
         if (objectiveFound)
         {
@@ -162,9 +164,9 @@ public class DefaultAIAgent : MonoBehaviour
         while (!objectiveFound)
         {
             yield return new WaitForFixedUpdate();
-            foreach (GameObject objective in LevelManager.instance.chaserObjectives)
+            foreach (Interactable objective in objectives)
             {
-                AttemptDetectObjective(objective);
+                AttemptDetectObjective(objective.gameObject);
             }
         }
         Debug.Log("ObjectiveDetection ended");

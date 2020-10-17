@@ -21,7 +21,7 @@ public class InteractableMonsterObjective : Interactable, IWallShuffle
         {
             Debug.Log("Objective is Interacted with");
             InteractedWith = true;
-            LevelManager.instance.RemoveChaserObjective(gameObject);
+            LevelManager.instance.WardBroken();
             // Destroy collider?
         }
     }

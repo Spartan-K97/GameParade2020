@@ -193,7 +193,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Put initial backstory here...
+  m_Text: 'Trevors failure to bring back the artifact wasn''t only his demise.
+
+    The
+    darkness brought many more to join him as death and destruction swept over the
+    land.'
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0

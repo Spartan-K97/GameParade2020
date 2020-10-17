@@ -8,9 +8,7 @@ public class ChaserAI : DefaultAIAgent
     public float hearingRadius = 5f;
     public float visualDistance = 15f;
 
-
-
-
+    private List<Interactable> monsterObjectives;
     [SerializeField] GameObject target = null;
     GameObject exit = null;
 
@@ -22,6 +20,7 @@ public class ChaserAI : DefaultAIAgent
     {
         base.SafeStart();
         interactor = gameObject.GetComponent<Interactor>();
+        monsterObjectives = new List<Interactable>(FindObjectsOfType<InteractableMonsterObjective>());
         exit = FindObjectOfType<InteractableExit>().gameObject;
         //agent = movementController.gameObject.AddComponent<NavMeshAgent>();
 
@@ -36,14 +35,14 @@ public class ChaserAI : DefaultAIAgent
     IEnumerator ObjectiveLoop()
     {
 
-        yield return new WaitForFixedUpdate();
+        yield return null;
 
        //StartCoroutine(DetectObjectives());
 
 
-        while (LevelManager.instance.chaserObjectives.Count > 0)
+        while (monsterObjectives.Count > 0)
         {
-            StartCoroutine(DetectObjectives());
+            Coroutine detect = StartCoroutine(DetectObjectives(monsterObjectives));
             GoToPosition(GetRandomMapPosition());
             //StartCoroutine(Wander());
             
@@ -52,6 +51,7 @@ public class ChaserAI : DefaultAIAgent
 
             if (ReachedDestination())
             {
+                StopCoroutine(detect);
                 if(!secondWander)
                 {
                     secondWander = true;
@@ -60,7 +60,8 @@ public class ChaserAI : DefaultAIAgent
                 {
                     //give the ai a break and give it a objective location
                     objectiveFound = true;
-                    detectedObjective = LevelManager.instance.GetRandomObjective();
+                    detectedObjective = monsterObjectives[Random.Range(0, monsterObjectives.Count)].gameObject;
+                    //detectedObjective = LevelManager.instance.GetRandomObjective();
                     //GoToClosestMapPosition(detectedObjective.transform.position);
                 }
             }
@@ -74,9 +75,10 @@ public class ChaserAI : DefaultAIAgent
                 Interactable i = detectedObjective.GetComponent<Interactable>();
                 if(i == null) { Debug.LogError("Invalid Objective Targeted"); }
                 else { i.Interact(interactor); }
-                LevelManager.instance.RemoveChaserObjective(detectedObjective);
+                //LevelManager.instance.RemoveChaserObjective(detectedObjective);
+                monsterObjectives.Remove(i);
                 //StartCoroutine(ObjectiveInteractAttempt(detectedObjective));
-                
+
                 //yield return new WaitUntil(() => objectiveCollected);
                 //if (LevelManager.instance.chaserObjectives.Count > 0)
                 //{

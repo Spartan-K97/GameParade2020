@@ -16,7 +16,7 @@ public class MonsterMovement : IMovement
 
 	private void Update()
 	{
-        if (Vector3.Distance(transform.position, human.position) < 1)
+        if (Vector3.Distance(transform.position, human.position) < 1 && LevelManager.instance.AllWardsDestroyed())
         {
             LevelManager.instance.freeze = true;
             FindObjectOfType<ScreenFade>().FadeToBlack(2, () => SceneManager.LoadScene("Outro Death"));
