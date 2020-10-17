@@ -90,13 +90,11 @@ public class LevelManager : MonoBehaviour
             {
                 hud.gameObject.SetActive(false);
                 pause.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.Confined;
             }
             else
             {
                 pause.gameObject.SetActive(false);
                 hud.gameObject.SetActive(true);
-                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }

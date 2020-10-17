@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
 	void Start()
 	{
 		sf.FadeFromDefault(1, null);
+		Cursor.lockState = CursorLockMode.Confined;
 	}
 
 	public void StartLight()
@@ -30,9 +31,11 @@ public class Menu : MonoBehaviour
 	void StartLightFaded()
 	{
 		SceneManager.LoadScene(lightScene);
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	void StartDarkFaded()
 	{
 		SceneManager.LoadScene(darkScene);
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 }

@@ -555,6 +555,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122944401}
   m_CullTransparentMesh: 0
+--- !u!1001 &192437639
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7728607390173307000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: runner
+      value: 
+      objectReference: {fileID: 2055649648}
+    - target: {fileID: 7728607390173307000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: chaser
+      value: 
+      objectReference: {fileID: 1787431170}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307003, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7728607390173307006, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+      propertyPath: m_Name
+      value: MusicHandler
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
 --- !u!1 &324856356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,6 +1678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelToLoad: Library
+  freeze: 0
   hud: {fileID: 870658274}
   pause: {fileID: 1619126723}
   sf: {fileID: 1672985669}
@@ -1903,8 +1969,38 @@ MonoBehaviour:
   controller: {fileID: 0}
   firstPersonArm: {fileID: 1385404217}
   armLiftDuration: 1
+--- !u!136 &2055649650
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055649648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.18
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!4 &2055649651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d10fd5fa915d4c74fbf5ddac496b48a4, type: 3}
   m_PrefabInstance: {fileID: 37831502}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &2055649652
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055649648}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
