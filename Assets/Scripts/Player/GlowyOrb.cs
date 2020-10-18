@@ -11,8 +11,11 @@ public class GlowyOrb : MonoBehaviour
     private Color col;
 
 	private void Start()
-	{
-        col = rend.material.color;
+    {
+        if (rend != null)
+        {
+            col = rend.material.color;
+        }
 	}
 
 	void Update()

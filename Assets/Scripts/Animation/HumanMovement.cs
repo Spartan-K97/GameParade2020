@@ -74,7 +74,7 @@ public class HumanMovement : IMovement
     }
     public override void Crouch(bool yes)
     {
-        anim.SetBool(animBoolCrouch, yes);
+        //anim.SetBool(animBoolCrouch, yes);
     }
     public override void SetOrbHeld(bool yes)
     {
