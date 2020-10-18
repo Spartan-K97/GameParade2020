@@ -30,16 +30,18 @@ public class PlayerController : MonoBehaviour
         bool crouchPressed = Input.GetButtonDown("Crouch");
         bool running = Input.GetButton("Sprint");
 
-        CheckAudio(x, z, running);
 
         if (crouchPressed)
         {
             movement.Crouch(isCrouching = !isCrouching);
         }
 
-        if (running)
+        if(audioClips.Length > 0)
         {
-            float sprintTime = LevelManager.instance.Sprint();
+            CheckAudio(x, z, running);
+            if (running)
+            {
+             float sprintTime = LevelManager.instance.Sprint();
             if(sprintTime > 0)
             {
                 StartCoroutine(SprintUntil(sprintTime));
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
             running = sprinting;
         }
         movement.Sprint(running);
+        }
 
         movement.Move(z, x, true);
     }
