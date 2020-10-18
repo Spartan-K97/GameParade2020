@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     bool isCrouching = false;
 
     [SerializeField] AudioSource audioSource = null;
+    [SerializeField] AudioSource secondSource = null;
+
 
     [SerializeField] AudioClip[] audioClips = null;
     bool sprinting = false;
@@ -52,8 +54,12 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator SprintUntil(float sprintTime)
     {
-        yield return new WaitForSeconds(sprintTime);
+        yield return new WaitForSeconds(sprintTime - 1.5f);
+        secondSource.Play();
+        yield return new WaitForSeconds(1.5f);
         sprinting = false;
+        yield return new WaitForSeconds(2);
+        secondSource.Pause();
     }
 
 
