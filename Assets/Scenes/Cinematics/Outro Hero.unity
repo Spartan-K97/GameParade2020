@@ -193,21 +193,22 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'After a horrifying experience, Trevor returned with the artifact.
+  m_Text: 'After the horrifying experience, Trevor returned with the artifact in
+    hand.
 
-    Returning
-    the artifact to the light wizards, they were able to restore daylight and regain
-    their power.
+    Returning the power of day to the light wizards, they were able to
+    restore daylight and regain their power.
 
-    Not wasting a single moment, the light wizards pushed back
-    against the darkness.
+    Not wasting a single moment, the
+    light wizards pushed back against the darkness.
 
-    With the dark wizards unprepared for this retaliation,
-    they were defeated, and the land restored to peace and prosperity.
+    With the dark wizards unprepared
+    for this retaliation, they were defeated, and the land restored to peace and
+    prosperity.
 
-    Among
-    this victory, Trevor was praised as a hero, and history would forever recall
-    his unwavering courage in the worlds most desperate time of need.'
+    Among this victory, Trevor was praised as a hero, and history
+    would forever recall his unwavering courage in the worlds most desperate time
+    of need.'
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0
