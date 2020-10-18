@@ -773,16 +773,20 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 545d776889fe30c42bf7dda259c5b011, type: 3}
   - {fileID: 21300000, guid: 7daefc902cbd12f4da50993eb7b27341, type: 3}
   - {fileID: 21300000, guid: 57f3e1a3cac1516499fc42c832d2b788, type: 3}
-  activeColour: {r: 1, g: 1, b: 1, a: 1}
-  greyedColour: {r: 1, g: 1, b: 1, a: 0.49803922}
+  skey: {fileID: 21300000, guid: 4dcd6afcce40e4c4a98aaf65792d0a88, type: 3}
+  sgreyKey: {fileID: 21300000, guid: 7a3f0e0b529ab8345bfbdcb86228c7b0, type: 3}
+  smatch: {fileID: 21300000, guid: d470d1f0da0ab6c4d843738b75e52437, type: 3}
+  sgreyMatch: {fileID: 21300000, guid: 03e4e5af44d69ee41ae7465e8f75a738, type: 3}
+  sward: {fileID: 21300000, guid: 0f49f228367d9c84bb7b50bd55a9d3fb, type: 3}
+  sgreyWard: {fileID: 21300000, guid: 34fdf91727006dd49b112d160762207a, type: 3}
   interactionText: {fileID: 1217961799}
-  key: {fileID: 347727020}
-  keyTally: {fileID: 324856358}
+  key: {fileID: 0}
+  keyTally: {fileID: 0}
   match: {fileID: 0}
   matchTally: {fileID: 0}
   sprint: {fileID: 0}
-  ward: {fileID: 0}
-  wardTally: {fileID: 0}
+  ward: {fileID: 347727020}
+  wardTally: {fileID: 324856358}
 --- !u!222 &870658275
 CanvasRenderer:
   m_ObjectHideFlags: 0
