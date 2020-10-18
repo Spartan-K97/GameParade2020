@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9182014302438452526}
   - component: {fileID: 9182014302438452521}
-  m_Layer: 0
+  - component: {fileID: 6213169948768045953}
+  - component: {fileID: 379240535846792768}
+  m_Layer: 10
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +49,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   kill: {fileID: 0}
+--- !u!54 &6213169948768045953
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182014302438452527}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!136 &379240535846792768
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182014302438452527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.18
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &9182014303288275476
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +90,7 @@ GameObject:
   - component: {fileID: 9182014303288275479}
   - component: {fileID: 9182014303288275472}
   - component: {fileID: 9182014303288275473}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +171,7 @@ GameObject:
   - component: {fileID: 9182014303652225705}
   - component: {fileID: 7432741978612414541}
   - component: {fileID: 8895146261360811916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
