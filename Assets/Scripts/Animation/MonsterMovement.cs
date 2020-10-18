@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class MonsterMovement : IMovement
 {
     [SerializeField] Transform kill = null;
+    private Rigidbody rb;
 
 	private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         Transform spawnPos = GameObject.Find("Monster Spawn Location").transform;
         controller.position = transform.position = spawnPos.position;
         controller.rotation = transform.rotation = spawnPos.rotation;
@@ -28,6 +30,11 @@ public class MonsterMovement : IMovement
         forwardSpeed *= Time.deltaTime * 2;
         strafeSpeed *= Time.deltaTime * 2;
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
+        RaycastHit hit;
+        if (rb.SweepTest(Vector3.Normalize(new Vector3(strafeSpeed, 0, forwardSpeed)), out hit, (totalSpeed * Time.deltaTime) + 0.05f) && totalSpeed > 0)
+        {
+            totalSpeed = 0;
+        }
         if (LockFacingDir)
         {
             float dir = (forwardSpeed >= 0) ? 1 : -1;
@@ -37,10 +44,8 @@ public class MonsterMovement : IMovement
         }
         else
         {
-            Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
+            Quaternion rot = (totalSpeed == 0) ? transform.rotation : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 90 * Time.deltaTime);
         }
-        transform.position += controller.rotation * new Vector3(strafeSpeed, 0, forwardSpeed);
-        controller.position = transform.position;
     }
 }

@@ -9,6 +9,7 @@ public class HumanMovement : IMovement
     [SerializeField] float armLiftDuration = 1;
     private Vector3 armUpPos; // Replace pos with Rotation when mesh added
     private Vector3 armDownPos;
+    private Rigidbody rb;
 
     int animLayerForward;
     int animLayerStrafe;
@@ -19,6 +20,7 @@ public class HumanMovement : IMovement
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         if (firstPersonArm != null)
         {
             armUpPos = firstPersonArm.localPosition;
@@ -40,6 +42,11 @@ public class HumanMovement : IMovement
     public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
+        RaycastHit hit;
+        if (rb.SweepTest(Vector3.Normalize(new Vector3(strafeSpeed, 0, forwardSpeed)), out hit, (totalSpeed * Time.deltaTime) + 0.05f) && totalSpeed > 0)
+        {
+            totalSpeed = 0;
+        }
         anim.SetLayerWeight(animLayerForward, totalSpeed);
         if (LockFacingDir)
         {
