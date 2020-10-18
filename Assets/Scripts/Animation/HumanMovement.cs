@@ -40,16 +40,17 @@ public class HumanMovement : IMovement
 
     public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
-        if(LevelManager.instance.freeze)
+        if (LevelManager.instance.freeze && (forwardSpeed != 0 || strafeSpeed != 0))
         {
             Move(0, 0, LockFacingDir);
             return;
-		}
+        }
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
         RaycastHit hit;
         if (rb != null && rb.SweepTest(Vector3.Normalize(new Vector3(strafeSpeed, 0, forwardSpeed)), out hit, (totalSpeed * Time.deltaTime) + 0.05f) && totalSpeed > 0)
         {
             totalSpeed = 0;
+            Debug.Log("Human walking into wall");
         }
         anim.SetLayerWeight(animLayerForward, totalSpeed);
         if (LockFacingDir)

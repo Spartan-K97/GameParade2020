@@ -25,7 +25,7 @@ public class MonsterMovement : IMovement
 
 	public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
-        if (LevelManager.instance.freeze)
+        if (LevelManager.instance.freeze && (forwardSpeed != 0 || strafeSpeed != 0))
         {
             Move(0, 0, LockFacingDir);
             return;
