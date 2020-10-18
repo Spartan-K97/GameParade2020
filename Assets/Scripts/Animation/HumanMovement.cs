@@ -57,14 +57,14 @@ public class HumanMovement : IMovement
             float dir = (forwardSpeed >= 0) ? 1 : -1;
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed) * dir, new Vector3(0, 1, 0));
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 360 * Time.deltaTime * 2);
             anim.SetFloat(animFloatDir, dir);
             anim.SetLayerWeight(animLayerForward, totalSpeed);
         }
         else
         {
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime * 2);
         }
         controller.position = transform.position;
     }

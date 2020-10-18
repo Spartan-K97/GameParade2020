@@ -30,8 +30,8 @@ public class MonsterMovement : IMovement
             Move(0, 0, LockFacingDir);
             return;
         }
-        forwardSpeed *= Time.deltaTime * 2;
-        strafeSpeed *= Time.deltaTime * 2;
+        forwardSpeed *= Time.deltaTime * 4;
+        strafeSpeed *= Time.deltaTime * 4;
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
         Vector3 direction = Vector3.Normalize(new Vector3(strafeSpeed, 0, forwardSpeed));
         RaycastHit hit;

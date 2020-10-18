@@ -574,6 +574,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!23 &503131446 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4950744040747267462, guid: 30ca386b00e8a8c47be4ae9d0e499ea4, type: 3}
+  m_PrefabInstance: {fileID: 572941452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &572941452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -957,6 +962,10 @@ PrefabInstance:
       propertyPath: monster
       value: 
       objectReference: {fileID: 5137544105034696268}
+    - target: {fileID: 8077022756495268424, guid: 6d0a0bcfde77948468e5b52d6878f63d, type: 3}
+      propertyPath: rend
+      value: 
+      objectReference: {fileID: 503131446}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d0a0bcfde77948468e5b52d6878f63d, type: 3}
 --- !u!1 &1619126721
@@ -1217,7 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 2038922599}
-  degreesOfVision: 70
+  degreesOfVision: 30
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 256
