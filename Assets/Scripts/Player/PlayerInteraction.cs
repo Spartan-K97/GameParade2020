@@ -29,8 +29,7 @@ public class PlayerInteraction : Interactor
     void FixedUpdate()
     {
         RaycastHit hit;
-        Ray ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out hit, interactionDistance, LayerMask.NameToLayer("Interactable")))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance))
         {
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 

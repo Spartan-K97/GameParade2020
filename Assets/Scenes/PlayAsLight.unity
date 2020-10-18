@@ -847,7 +847,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1847
+    m_Bits: 10039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1367,6 +1367,7 @@ MonoBehaviour:
   maxMatches: 5
   maxSprintDuration: 2.5
   sprintCooldownDuration: 6
+  monsterParticles: {fileID: 2011594123}
 --- !u!114 &1672985669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1596,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877240883}
   m_CullTransparentMesh: 0
+--- !u!198 &2011594123 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7432741978612414541, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+  m_PrefabInstance: {fileID: 9182014304158508077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2055649649 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4188805031823371550, guid: 6d0a0bcfde77948468e5b52d6878f63d, type: 3}
@@ -1956,6 +1962,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7432741978612414541, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895146261360811916, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9182014302438452521, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
       propertyPath: kill
       value: 
