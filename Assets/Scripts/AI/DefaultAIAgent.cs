@@ -28,6 +28,7 @@ public class DefaultAIAgent : MonoBehaviour
     protected virtual void SafeStart()
     {
         movementController.controller = transform;
+        Destroy(movementController.rb);
         movementController.rb = null;
     }
     #endregion

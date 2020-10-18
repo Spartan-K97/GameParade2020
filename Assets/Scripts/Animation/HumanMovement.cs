@@ -7,6 +7,7 @@ public class HumanMovement : IMovement
     Animator anim;
     [SerializeField] Transform firstPersonArm = null;
     [SerializeField] float armLiftDuration = 1;
+    [SerializeField] GameObject orbLight = null;
     private Vector3 armUpPos; // Replace pos with Rotation when mesh added
     private Vector3 armDownPos;
 
@@ -39,6 +40,11 @@ public class HumanMovement : IMovement
 
     public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
+        if(LevelManager.instance.freeze)
+        {
+            Move(0, 0, LockFacingDir);
+            return;
+		}
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
         RaycastHit hit;
         if (rb != null && rb.SweepTest(Vector3.Normalize(new Vector3(strafeSpeed, 0, forwardSpeed)), out hit, (totalSpeed * Time.deltaTime) + 0.05f) && totalSpeed > 0)
@@ -73,7 +79,7 @@ public class HumanMovement : IMovement
     public override void SetOrbHeld(bool yes)
     {
         anim.SetBool(animBoolOrb, yes);
-
+        orbLight.SetActive(yes);
         if (firstPersonArm != null)
         {
             if (yes)

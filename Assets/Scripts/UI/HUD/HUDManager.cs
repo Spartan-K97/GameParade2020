@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class HUDManager : MonoBehaviour
 {
 	[SerializeField] List<Sprite> tallies = new List<Sprite>();
-	[SerializeField] Color activeColour = new Color(1, 1, 1, 1), greyedColour = new Color(1, 1, 1, 0.5f);
+	[SerializeField] Sprite skey = null, sgreyKey = null, smatch = null, sgreyMatch = null, sward = null, sgreyWard = null;
 	[SerializeField] Text interactionText = null;
 
 	private void SetTally(Image icon, Image tally, int count)
@@ -23,7 +23,6 @@ public class HUDManager : MonoBehaviour
 			else
 			{
 				tally.sprite = tallies[count];
-				icon.color = (count > 0) ? activeColour : greyedColour;
 			}
 		}
 	}
@@ -40,19 +39,17 @@ public class HUDManager : MonoBehaviour
 	public void SetNumKeys(int count)
 	{
 		SetTally(key, keyTally, count);
+		if (key != null) { key.sprite = (count > 0) ? skey : sgreyKey; }
 	}
 
 	public void SetNumMatches(int count)
 	{
 		SetTally(match, matchTally, count);
+		if (match != null) { match.sprite = (count > 0) ? smatch : sgreyMatch; }
 	}
 	public void SetCanSprint(bool yes)
 	{
-		if (sprint != null)
-		{
-			sprint.color = (yes) ? activeColour : greyedColour;
-		}
-
+		// Removed
 	}
 
 	#endregion
@@ -64,6 +61,7 @@ public class HUDManager : MonoBehaviour
 	public void SetNumWards(int count)
 	{
 		SetTally(ward, wardTally, count);
+		if (ward != null) { ward.sprite = (count > 0) ? sward : sgreyWard; }
 	}
 
 	#endregion
