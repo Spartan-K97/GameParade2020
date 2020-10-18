@@ -14,8 +14,8 @@ public class DefaultAIAgent : MonoBehaviour
     //[SerializeField] protected float interactionRadius = 2f;
     [SerializeField] protected Interactor interactor;
 
-    Vector3 localMap;
-    Vector3 localOffset;
+    //Vector3 localMap;
+    //Vector3 localOffset;
     protected bool objectiveFound = false;
     protected GameObject detectedObjective = null;
 
@@ -27,8 +27,6 @@ public class DefaultAIAgent : MonoBehaviour
 
     protected virtual void SafeStart()
     {
-        localMap = AIMapInfo.instance.mapSize;
-        localOffset = AIMapInfo.instance.mapOffset;
         movementController.controller = transform;
     }
     #endregion
@@ -93,10 +91,8 @@ public class DefaultAIAgent : MonoBehaviour
     {
         Vector3 positionVector = Vector3.zero;
 
-        positionVector.x = Random.Range(-localMap.x, localMap.x);
-        positionVector.z = Random.Range(-localMap.z, localMap.z);
-
-        positionVector += localOffset;
+        positionVector.x = Random.Range(AIMapInfo.instance.minExtent.x, AIMapInfo.instance.maxExtent.x);
+        positionVector.z = Random.Range(AIMapInfo.instance.minExtent.z, AIMapInfo.instance.maxExtent.z);
 
         NavMeshHit navHit;
         NavMesh.SamplePosition(positionVector, out navHit, 30.0f, 1 << NavMesh.GetAreaFromName("Walkable"));

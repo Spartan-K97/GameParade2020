@@ -77,10 +77,10 @@ public class LevelManager : MonoBehaviour
 
 	#region UI
 
-	[SerializeField] HUDManager hud = null;
-    [SerializeField] PauseManager pause = null;
     [SerializeField] ScreenFade sf = null;
-    private bool paused = false;
+	[SerializeField] HUDManager hud = null;
+    //[SerializeField] PauseManager pause = null;
+    //private bool paused = false;
 	//void Update()
     //{
     //    //adjust for deeper pause sceens

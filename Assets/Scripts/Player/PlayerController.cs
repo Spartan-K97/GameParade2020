@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
     bool isCrouching = false;
 
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource audioSource = null;
 
-    [SerializeField] AudioClip[] audioClips;
+    [SerializeField] AudioClip[] audioClips = null;
 
 	private void Start()
 	{
