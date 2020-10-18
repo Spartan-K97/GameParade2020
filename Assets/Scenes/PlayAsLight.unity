@@ -219,11 +219,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7728607390173307000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
       propertyPath: musicLayers.Array.data[2].layerDistance
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7728607390173307000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
       propertyPath: musicLayers.Array.data[2].blendDistance
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7728607390173307000, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
       propertyPath: musicLayers.Array.data[1].blendDistance
