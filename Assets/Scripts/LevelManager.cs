@@ -107,7 +107,7 @@ public class LevelManager : MonoBehaviour
     private int playerNumKeysUsed = 0;
     [SerializeField] int playerNumMatches = 0;
     public bool playerHasOrb = false;
-    private bool canSprint = false;
+    private bool canSprint = true;
     private int numKeysInGame = 0;
     [SerializeField] int maxKeys = 5;
     [SerializeField] int maxMatches = 5;
@@ -152,13 +152,18 @@ public class LevelManager : MonoBehaviour
     {
         return playerNumMatches >= 1;
     }
+
     public float Sprint() // Returns time allowed to sprint, -1 = sprint unavailable
     {
-        if(canSprint) { return -1; }
-        canSprint = false;
-        StartCoroutine(SprintCooldown());
-        return maxSprintDuration;
-	}
+        if (canSprint)
+        {
+            canSprint = false;
+            StartCoroutine(SprintCooldown());
+            return maxSprintDuration;
+        }
+        return -1;
+    }
+
     private IEnumerator SprintCooldown()
     {
         yield return new WaitForSeconds(sprintCooldownDuration);

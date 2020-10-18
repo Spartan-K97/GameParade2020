@@ -11,15 +11,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioSource audioSource = null;
 
     [SerializeField] AudioClip[] audioClips = null;
+    bool sprinting = false;
 
 	private void Start()
 	{
         movement.controller = transform;
 	}
 
-	private void Update()
+    private void Update()
     {
-        if(LevelManager.instance.freeze) { return; }
+        if (LevelManager.instance.freeze) { return; }
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -34,15 +35,33 @@ public class PlayerController : MonoBehaviour
             movement.Crouch(isCrouching = !isCrouching);
         }
 
+        if (running)
+        {
+            float sprintTime = LevelManager.instance.Sprint();
+            if(sprintTime > 0)
+            {
+                StartCoroutine(SprintUntil(sprintTime));
+                sprinting = true;
+            }
+            running = sprinting;
+        }
         movement.Sprint(running);
+
         movement.Move(z, x, true);
     }
+
+    private IEnumerator SprintUntil(float sprintTime)
+    {
+        yield return new WaitForSeconds(sprintTime);
+        sprinting = false;
+    }
+
 
     void CheckAudio(float x, float z, bool running)
     {
         if((x != 0) || (z != 0)) 
         {
-            if(running)
+            if(sprinting)
             {
                 
                 if(!(audioSource.clip == audioClips[1] && audioSource.isPlaying))
@@ -60,8 +79,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            audioSource.Stop();
+        }
 
     }
-
-
+    
 }
