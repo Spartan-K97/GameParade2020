@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
         secondSource.Play();
         yield return new WaitForSeconds(1.5f);
         sprinting = false;
-        yield return new WaitForSeconds(2);
         secondSource.Pause();
     }
 
