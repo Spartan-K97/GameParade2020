@@ -1328,5 +1328,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 9182014302438452527, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}

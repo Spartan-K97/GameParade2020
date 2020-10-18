@@ -56,6 +56,7 @@ public class LevelManager : MonoBehaviour
         hud.SetNumKeys(playerNumKeys);
         hud.SetNumMatches(playerNumMatches);
         hud.SetNumWards(numWardsInGame);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Shuffle(List<Interactable> toShuffle)
