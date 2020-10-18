@@ -27,7 +27,7 @@ public class MonsterMovement : IMovement
     {
         if (LevelManager.instance.freeze)
         {
-            Move(0, 0, LockFacingDir);
+            //Move(0, 0, LockFacingDir);
             return;
         }
         forwardSpeed *= Time.deltaTime * 4;
