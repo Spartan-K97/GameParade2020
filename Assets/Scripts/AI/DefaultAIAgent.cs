@@ -47,7 +47,6 @@ public class DefaultAIAgent : MonoBehaviour
     //}
 
     Coroutine movement = null;
-    Coroutine interact = null;
     protected void GoToPosition(Vector3 pos)
     {
         StopMoving();
@@ -68,7 +67,6 @@ public class DefaultAIAgent : MonoBehaviour
         return movement == null;
 	}
 
-    bool escapeStuck = false;
     protected IEnumerator PathfindPos(Vector3 targetPos)
     {
         NavMeshHit navHit;

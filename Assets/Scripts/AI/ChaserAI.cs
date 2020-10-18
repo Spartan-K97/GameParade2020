@@ -30,7 +30,7 @@ public class ChaserAI : DefaultAIAgent
     #region ObjectiveLoop
 
     bool secondWander = false;
-    bool objectiveCollected = false;
+    //bool objectiveCollected = false;
 
     IEnumerator ObjectiveLoop()
     {
@@ -86,7 +86,7 @@ public class ChaserAI : DefaultAIAgent
                 //}
             }
 
-            objectiveCollected = false;
+            //objectiveCollected = false;
         }
 
         //NO OBJECTIVES LEFT, KILL PLAYER

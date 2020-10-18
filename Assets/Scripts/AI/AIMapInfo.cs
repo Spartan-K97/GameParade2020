@@ -7,7 +7,7 @@ public class AIMapInfo : MonoBehaviour
     #region Singleton
 
     public static AIMapInfo instance;
-    [SerializeField] Transform floor;
+    [SerializeField] Transform floor = null;
 
     private void Awake()
     {

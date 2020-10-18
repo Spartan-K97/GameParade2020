@@ -29,7 +29,7 @@ public class RunnerAI : DefaultAIAgent
     #region ObjectiveLoop
 
     bool secondWander = false;
-    bool objectiveCollected = false;
+    //bool objectiveCollected = false;
 
     IEnumerator ObjectiveLoop()
     {
@@ -92,7 +92,7 @@ public class RunnerAI : DefaultAIAgent
                 objectives.Remove(i);
             }
 
-            objectiveCollected = false;
+            //objectiveCollected = false;
         }
     }
 

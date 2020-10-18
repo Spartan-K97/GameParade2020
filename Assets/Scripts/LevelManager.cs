@@ -81,24 +81,24 @@ public class LevelManager : MonoBehaviour
     [SerializeField] PauseManager pause = null;
     [SerializeField] ScreenFade sf = null;
     private bool paused = false;
-	void Update()
-    {
-        //adjust for deeper pause sceens
-        if (Input.GetButtonDown("Pause"))
-        {
-            paused = !paused;
-            if (paused)
-            {
-                hud.gameObject.SetActive(false);
-                pause.gameObject.SetActive(true);
-            }
-            else
-            {
-                pause.gameObject.SetActive(false);
-                hud.gameObject.SetActive(true);
-            }
-        }
-    }
+	//void Update()
+    //{
+    //    //adjust for deeper pause sceens
+    //    if (Input.GetButtonDown("Pause"))
+    //    {
+    //        paused = !paused;
+    //        if (paused)
+    //        {
+    //            hud.gameObject.SetActive(false);
+    //            pause.gameObject.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            pause.gameObject.SetActive(false);
+    //            hud.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
 	#endregion
 
 	#region human
@@ -169,7 +169,6 @@ public class LevelManager : MonoBehaviour
 
     #region monster
 
-    [SerializeField] int playerNumWards = 0; // Default num can be set
     private int numWardsInGame = 0;
 
     public void WardBroken()
