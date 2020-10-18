@@ -25,6 +25,11 @@ public class MonsterMovement : IMovement
 
 	public override void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) // -1 to 1 values
     {
+        if (LevelManager.instance.freeze)
+        {
+            Move(0, 0, LockFacingDir);
+            return;
+        }
         forwardSpeed *= Time.deltaTime * 2;
         strafeSpeed *= Time.deltaTime * 2;
         float totalSpeed = Mathf.Sqrt((forwardSpeed * forwardSpeed) + (strafeSpeed * strafeSpeed));
