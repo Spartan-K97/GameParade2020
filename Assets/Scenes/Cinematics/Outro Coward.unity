@@ -193,9 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: After abandoning his promise to bring back the artifact in fear of his
-    life, Trevor was branded a coward, and the darkness swept over the land, bringing
-    death and destruction along with it.
+  m_Text: "Abandoning the mission. \nThere is no sun.\nNo day."
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -332,7 +330,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 52100f3daacfdb04288e8a64d8f8d9cf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 314ae3270984c544e99d9c8cf0b22e47, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

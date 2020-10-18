@@ -3141,6 +3141,10 @@ PrefabInstance:
       propertyPath: kill
       value: 
       objectReference: {fileID: 543450653670515877}
+    - target: {fileID: 9182014302438452521, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 1787431171}
     - target: {fileID: 9182014302438452526, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5

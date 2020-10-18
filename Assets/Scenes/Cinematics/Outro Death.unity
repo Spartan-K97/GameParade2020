@@ -193,11 +193,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Trevor''s failure to bring back the artifact brought more than his demise.
+  m_Text: 'Your death was not long but alone.
 
-    The
-    darkness brought many more to join him as death and destruction swept over the
-    land.'
+    Others face darkness together.'
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -673,7 +671,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

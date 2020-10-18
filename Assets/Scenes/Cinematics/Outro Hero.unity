@@ -193,22 +193,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'After the horrifying experience, Trevor returned with the artifact in
-    hand.
+  m_Text: 'Retuning a shard of light brought back hope.
 
-    Returning the power of day to the light wizards, they were able to
-    restore daylight and regain their power.
+    A pact broken.
 
-    Not wasting a single moment, the
-    light wizards pushed back against the darkness.
+    The
+    day returned.
 
-    With the dark wizards unprepared
-    for this retaliation, they were defeated, and the land restored to peace and
-    prosperity.
 
-    Among this victory, Trevor was praised as a hero, and history
-    would forever recall his unwavering courage in the worlds most desperate time
-    of need.'
+    Fame and Glory.'
 --- !u!222 &23904340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -248,7 +241,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
