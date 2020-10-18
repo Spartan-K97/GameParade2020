@@ -7,6 +7,8 @@ public class MonsterMovement : IMovement
 {
     [SerializeField] Transform kill = null;
 
+    [SerializeField] AudioSource deathSound = null;
+
 	private void Start()
     {
         Transform spawnPos = GameObject.Find("Monster Spawn Location").transform;
@@ -19,6 +21,7 @@ public class MonsterMovement : IMovement
         if (Vector3.Distance(transform.position, kill.position) < 1 && LevelManager.instance.AllWardsDestroyed())
         {
             LevelManager.instance.freeze = true;
+            deathSound.Play();
             FindObjectOfType<ScreenFade>().FadeToBlack(2, () => SceneManager.LoadScene("Outro Death"));
         }
 	}
