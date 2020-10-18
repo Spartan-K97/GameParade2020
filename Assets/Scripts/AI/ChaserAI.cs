@@ -155,13 +155,16 @@ public class ChaserAI : DefaultAIAgent
             GoToPosition((patrolToDoor)? exit.transform.position : GetRandomMapPosition());
             yield return new WaitUntil(() => ReachedDestination() || objectiveFound);
             StopCoroutine(detect);
-            if(objectiveFound) { Debug.Log("Start Chase Sequence"); }
-            while (objectiveFound) // Chase sequence
-            {
-                objectiveFound = false;
-                StopMoving();
-                yield return StartCoroutine(PathfindPos(target.transform.position));
-                AttemptDetectObjective(target);
+            if(objectiveFound) {
+                Debug.Log("Start Chase Sequence");
+                while (objectiveFound) // Chase sequence
+                {
+                    objectiveFound = false;
+                    StopMoving();
+                    yield return StartCoroutine(PathfindPos(target.transform.position));
+                    ObjectIsInFOV(target, 180);
+                }
+                Debug.Log("End Chase Sequence");
             }
             patrolToDoor = !patrolToDoor;
 

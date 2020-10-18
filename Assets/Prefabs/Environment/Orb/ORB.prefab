@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 651070147709987559}
   - component: {fileID: 1623562406457868270}
   - component: {fileID: -702813642563237935}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ORB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,5 +108,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7a882c4e1004d4aa6d4060aa9df0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: Pick Up
-  exit: {fileID: 0}
