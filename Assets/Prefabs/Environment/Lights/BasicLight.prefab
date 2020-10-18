@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6535739754548565944}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -6578151277795802221, guid: 2bdb3d3f9c87c6040ba2024075fc3fd2, type: 3}
 --- !u!23 &6535739754548565946
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c7fc7cd151241c04dab3fa14788af3d2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,7 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc238ffbae36d584192e2ff9e4235206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: Turn off
   pointLight: {fileID: 7660625634702866113}
   lightDistance: 0
   lightIsOn: 0
