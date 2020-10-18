@@ -7,15 +7,18 @@ public class AIMapInfo : MonoBehaviour
     #region Singleton
 
     public static AIMapInfo instance;
-    [SerializeField] Transform floor;
+    [SerializeField] Transform mapNegCorner = null;
+    [SerializeField] Transform mapPosCorner = null;
+    [HideInInspector] public Vector3 maxExtent;
+    [HideInInspector] public Vector3 minExtent;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            mapSize = floor.localScale / 2;
-            mapOffset = floor.position;
+            maxExtent = mapPosCorner.position;
+            minExtent = mapNegCorner.position;
         }
         else
         {
@@ -25,7 +28,4 @@ public class AIMapInfo : MonoBehaviour
 
 
     #endregion
-
-    public Vector3 mapSize;
-    public Vector3 mapOffset;
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MonsterMovement : IMovement
 {
-    [SerializeField] Transform human;
+    [SerializeField] Transform kill = null;
 
 	private void Start()
     {
@@ -16,7 +16,7 @@ public class MonsterMovement : IMovement
 
 	private void Update()
 	{
-        if (Vector3.Distance(transform.position, human.position) < 1 && LevelManager.instance.AllWardsDestroyed())
+        if (Vector3.Distance(transform.position, kill.position) < 1 && LevelManager.instance.AllWardsDestroyed())
         {
             LevelManager.instance.freeze = true;
             FindObjectOfType<ScreenFade>().FadeToBlack(2, () => SceneManager.LoadScene("Outro Death"));
@@ -33,12 +33,12 @@ public class MonsterMovement : IMovement
             float dir = (forwardSpeed >= 0) ? 1 : -1;
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed) * dir, new Vector3(0, 1, 0));
 
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, controller.rotation * rot, 90 * Time.deltaTime);
         }
         else
         {
             Quaternion rot = (totalSpeed == 0) ? Quaternion.identity : Quaternion.LookRotation(new Vector3(strafeSpeed, 0, forwardSpeed), new Vector3(0, 1, 0));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 360 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 90 * Time.deltaTime);
         }
         transform.position += controller.rotation * new Vector3(strafeSpeed, 0, forwardSpeed);
         controller.position = transform.position;
