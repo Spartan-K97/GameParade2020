@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class InteractableExit : Interactable
 {
-    private bool isUnlocked = true;
+    private bool isUnlocked = false;
     private bool exitTriggered = false;
 
 	public override string GetInteractMessage(Interactor interact)

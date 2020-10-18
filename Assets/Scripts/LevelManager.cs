@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using UnityEngineInternal;
 
 public class LevelManager : MonoBehaviour
 {
@@ -144,14 +145,21 @@ public class LevelManager : MonoBehaviour
     }
     public bool UseMatch() // Return false if no matches to use
     {
-        if (playerNumMatches <= 0) { return false; }
-        --playerNumMatches;
-        hud.SetNumMatches(playerNumMatches);
-        return true;
+        if (playerNumMatches > 0)
+        {
+            --playerNumMatches;
+            hud.SetNumMatches(playerNumMatches);
+            return true;
+        }
+        return false;
     }
     public bool PlayerHasMatch()
     {
-        return playerNumMatches >= 1;
+        if(playerNumMatches > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     public float Sprint() // Returns time allowed to sprint, -1 = sprint unavailable

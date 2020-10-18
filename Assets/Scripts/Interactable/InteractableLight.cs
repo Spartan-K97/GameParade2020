@@ -33,8 +33,12 @@ public class InteractableLight : Interactable
     {
         if(interact.isRunner)
         {
-            lightIsOn = true;
-            pointLight.SetActive(true);
+            if (LevelManager.instance.PlayerHasMatch())
+            {
+                LevelManager.instance.UseMatch();
+                lightIsOn = true;
+                pointLight.SetActive(true);
+            }
         }
         else
         {
