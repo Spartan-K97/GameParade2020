@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 968669598}
   audioSource: {fileID: 122527187}
+  secondSource: {fileID: 0}
   audioClips:
   - {fileID: 8300000, guid: ad4d88958d055274e8e9e56e14d34332, type: 3}
   - {fileID: 8300000, guid: 52100f3daacfdb04288e8a64d8f8d9cf, type: 3}
@@ -433,7 +434,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2871
+    m_Bits: 11063
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1052,6 +1053,7 @@ MonoBehaviour:
   maxMatches: 5
   maxSprintDuration: 2
   sprintCooldownDuration: 5
+  monsterParticles: {fileID: 5137544105034696267}
 --- !u!114 &1672985669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1276,6 +1278,14 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7432741978612414541, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 0.039215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432741978612414541, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.a
+      value: 0.039215688
+      objectReference: {fileID: 0}
     - target: {fileID: 9182014302438452521, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
       propertyPath: kill
       value: 
@@ -1334,3 +1344,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+--- !u!198 &5137544105034696267 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7432741978612414541, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+  m_PrefabInstance: {fileID: 5137544105034696266}
+  m_PrefabAsset: {fileID: 0}

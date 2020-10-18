@@ -5,6 +5,7 @@ using UnityEngine;
 public class IMovement : MonoBehaviour
 {
     [HideInInspector] public Transform controller;
+    public Rigidbody rb;
 
     public virtual void Move(float forwardSpeed, float strafeSpeed, bool LockFacingDir) { } // -1 to 1 values
     public virtual void Sprint(bool yes) { }

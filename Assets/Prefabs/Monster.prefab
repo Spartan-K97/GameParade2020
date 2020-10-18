@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9182014302438452521}
   - component: {fileID: 6213169948768045953}
   - component: {fileID: 379240535846792768}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  rb: {fileID: 6213169948768045953}
   kill: {fileID: 0}
 --- !u!54 &6213169948768045953
 Rigidbody:
@@ -171,7 +172,7 @@ GameObject:
   - component: {fileID: 9182014303652225705}
   - component: {fileID: 7432741978612414541}
   - component: {fileID: 8895146261360811916}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +209,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

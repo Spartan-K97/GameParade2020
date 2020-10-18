@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+  rb: {fileID: 5185600665967359991}
   firstPersonArm: {fileID: 0}
   armLiftDuration: 1
 --- !u!54 &5185600665967359991

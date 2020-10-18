@@ -175,12 +175,14 @@ public class LevelManager : MonoBehaviour
 
     #region monster
 
+    [SerializeField] ParticleSystem monsterParticles = null;
     private int numWardsInGame = 0;
 
     public void WardBroken()
     {
         --numWardsInGame;
         hud.SetNumWards(numWardsInGame);
+        if(numWardsInGame <= 0) { monsterParticles.Play(); }
 	}
     public bool AllWardsDestroyed()
     {

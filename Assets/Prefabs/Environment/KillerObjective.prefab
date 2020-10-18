@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4771376176003792754}
   - component: {fileID: 5851852250753229437}
   - component: {fileID: 7228973549377013491}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: KillerObjective
   m_TagString: Untagged
   m_Icon: {fileID: 0}
