@@ -155,8 +155,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 968669598}
-  audioSource: {fileID: 0}
-  audioClips: []
+  audioSource: {fileID: 122527187}
+  audioClips:
+  - {fileID: 8300000, guid: ad4d88958d055274e8e9e56e14d34332, type: 3}
+  - {fileID: 8300000, guid: 52100f3daacfdb04288e8a64d8f8d9cf, type: 3}
+  - {fileID: 8300000, guid: 6e322b732a3454042994cefe20c27a83, type: 3}
+  - {fileID: 8300000, guid: 50e7d4bc63c258a4281cd27f90a8177e, type: 3}
 --- !u!4 &28320629
 Transform:
   m_ObjectHideFlags: 0
@@ -202,6 +206,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!82 &122527187 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7728607390173306980, guid: 887876c2c1cf54a4c990e283df4c79ec, type: 3}
+  m_PrefabInstance: {fileID: 1882378797}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &324856356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1248,7 @@ MonoBehaviour:
   interactor: {fileID: 1918824467}
   hearingRadius: 10
   visualDistance: 100
+  avoid: {fileID: 968669597}
 --- !u!114 &1918824467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1345,6 +1355,18 @@ PrefabInstance:
     - target: {fileID: 9182014302438452527, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182014302438452527, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182014303288275476, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9182014303652225710, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cd501a45bcfa9d40ab9ae601d61b4b3, type: 3}

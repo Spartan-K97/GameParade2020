@@ -35,7 +35,7 @@ public class ChaserAI : DefaultAIAgent
     IEnumerator ObjectiveLoop()
     {
 
-        yield return null;
+        yield return new WaitForFixedUpdate();
 
        //StartCoroutine(DetectObjectives());
 
@@ -211,7 +211,7 @@ public class ChaserAI : DefaultAIAgent
         }
         while (true)
         {
-            yield return null;
+            yield return new WaitForFixedUpdate();
            
             AttemptDetectObjective(target);
         }

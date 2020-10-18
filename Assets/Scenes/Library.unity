@@ -6124,8 +6124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b4b99f96f23f34195545d82c5e24c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapNegCorner: {fileID: 0}
-  mapPosCorner: {fileID: 0}
+  mapNegCorner: {fileID: 1142290138}
+  mapPosCorner: {fileID: 1843604669}
   maxExtent: {x: 0, y: 0, z: 0}
   minExtent: {x: 0, y: 0, z: 0}
 --- !u!1001 &481012070
