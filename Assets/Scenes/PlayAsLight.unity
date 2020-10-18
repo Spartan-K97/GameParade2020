@@ -416,7 +416,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4dcd6afcce40e4c4a98aaf65792d0a88, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1095,8 +1095,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 545d776889fe30c42bf7dda259c5b011, type: 3}
   - {fileID: 21300000, guid: 7daefc902cbd12f4da50993eb7b27341, type: 3}
   - {fileID: 21300000, guid: 57f3e1a3cac1516499fc42c832d2b788, type: 3}
-  activeColour: {r: 1, g: 1, b: 1, a: 1}
-  greyedColour: {r: 1, g: 1, b: 1, a: 0.49803922}
+  skey: {fileID: 21300000, guid: 4dcd6afcce40e4c4a98aaf65792d0a88, type: 3}
+  sgreyKey: {fileID: 21300000, guid: 7a3f0e0b529ab8345bfbdcb86228c7b0, type: 3}
+  smatch: {fileID: 21300000, guid: d470d1f0da0ab6c4d843738b75e52437, type: 3}
+  sgreyMatch: {fileID: 21300000, guid: 03e4e5af44d69ee41ae7465e8f75a738, type: 3}
+  sward: {fileID: 21300000, guid: 0f49f228367d9c84bb7b50bd55a9d3fb, type: 3}
+  sgreyWard: {fileID: 21300000, guid: 34fdf91727006dd49b112d160762207a, type: 3}
   interactionText: {fileID: 1217961799}
   key: {fileID: 347727020}
   keyTally: {fileID: 324856358}
@@ -1158,7 +1162,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9333334, g: 0.92549026, b: 0.91372555, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1557,7 +1561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: d470d1f0da0ab6c4d843738b75e52437, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1745,7 +1749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1877240884
 RectTransform:
   m_ObjectHideFlags: 0
