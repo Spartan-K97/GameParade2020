@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
 
     bool isCrouching = false;
 
+    [SerializeField] AudioSource audioSource;
+
+    [SerializeField] AudioClip[] audioClips;
+
 	private void Start()
 	{
         movement.controller = transform;
@@ -23,6 +27,8 @@ public class PlayerController : MonoBehaviour
         bool crouchPressed = Input.GetButtonDown("Crouch");
         bool running = Input.GetButton("Sprint");
 
+        CheckAudio(x, z, running);
+
         if (crouchPressed)
         {
             movement.Crouch(isCrouching = !isCrouching);
@@ -31,5 +37,31 @@ public class PlayerController : MonoBehaviour
         movement.Sprint(running);
         movement.Move(z, x, true);
     }
+
+    void CheckAudio(float x, float z, bool running)
+    {
+        if((x != 0) || (z != 0)) 
+        {
+            if(running)
+            {
+                
+                if(!(audioSource.clip == audioClips[1] && audioSource.isPlaying))
+                {
+                    audioSource.clip = audioClips[1];
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                if (!(audioSource.clip == audioClips[0] && audioSource.isPlaying))
+                {
+                    audioSource.clip = audioClips[0];
+                    audioSource.Play();
+                }
+            }
+        }
+
+    }
+
 
 }
